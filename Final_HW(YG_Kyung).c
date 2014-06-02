@@ -44,6 +44,7 @@ int main(void)
 
 		case '6': // 저장하기
 			choiceButton(menu_choice);
+			SaveFile(fp, id, maxnum);
 			break;
 
 		case '7': // 종료
@@ -263,15 +264,9 @@ void headOfCase2(void)
 }
 void case2(FILE *fp, Member_t *id, int maxnum)   // 2. 회원 등록 실행
 {
-	if ((fp = fopen("data.txt", "r")) == NULL)
-		fprintf(stderr, "Error opening file %s.", "data.txt");
 	system("cls");
 	headOfCase2();
 	inputNewMember(fp, id, maxnum);
-	
-	fp = fopen("data.txt", "a+");
-	fprintf(fp, "\n%s\t%s\t%s\t%s", id[maxnum].IDNum, id[maxnum].Name, id[maxnum].Address, id[maxnum].Cellphone);
-	fclose(fp);
 }
 int findMaxStudentNum(Member_t *id, int maxnum)   // 현재 저장된 학생들 중 가장 큰 학번 검색
 {
@@ -443,6 +438,37 @@ void closeCase2(void)
 	gotoxy(74, 26); inputkey = getche();
 }
 
+// 6. 저장 함수
+void SaveFile(FILE *fp, Member_t *id, int maxnum)   // 메모리에 저장되어 있는 내용을 파일로 저장
+{
+	fp = fopen("data.txt", "wt");
+	fprintf(fp, "회원아이디\t회원이름\t회원주소\t핸드폰번호\n");     //맨첫줄 저장
+
+	for (int i = 1; i < maxnum; i++)
+		fprintf(fp, "%s\t%s\t%s\t%s\n", id[i].IDNum, id[i].Name, id[i].Address, id[i].Cellphone);
+
+	fclose(fp);
+	system("cls");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 16 * 14);
+	printf("                                < 파일 저장 >                              ");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	printf("\n\n\n\n\n\n\n");
+	printf("               ■■■■■■■■■■■■■■■■■■■■■■\n"); Sleep(TIME_OF_DELAY);
+	printf("               ■■□□■■■□□■■□■■■□■□□□□■\n"); Sleep(TIME_OF_DELAY);
+	printf("               ■□■■□■□■■□■□■■■□■□■■■■\n"); Sleep(TIME_OF_DELAY);
+	printf("               ■■□■■■□■■□■□■■■□■□■■■■\n"); Sleep(TIME_OF_DELAY);
+	printf("               ■■■□■■□□□□■□■■■□■□□□□■\n"); Sleep(TIME_OF_DELAY);
+	printf("               ■■■■□■□■■□■□■■■□■□■■■■\n"); Sleep(TIME_OF_DELAY);
+	printf("               ■□■■□■□■■□■■□■□■■□■■■■\n"); Sleep(TIME_OF_DELAY);
+	printf("               ■■□□■■□■■□■■■□■■■□□□□■\n"); Sleep(TIME_OF_DELAY);
+	printf("               ■■■■■■■■■■■■■■■■■■■■■■\n"); Sleep(TIME_OF_DELAY);
+	printf("\n\n\n\n\n\n\n");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 16 * 10);
+	printf("              <파일 저장이 완료되었습니다 > 아무 키나 누르세요             ");
+	getch(); fflush(stdin);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+}
+
 // 7. 종료 함수
 int saveCheck(void)   // 종료 전 파일 저장 유무를 질문 (반환값: 입력여부)
 {
@@ -537,12 +563,14 @@ void programClose(void)   // 프로그램 종료 안내 메세지 출력
 	printf("T"); Sleep(TIME_OF_DELAY);
 	printf("E"); Sleep(TIME_OF_DELAY);
 	printf("R"); Sleep(TIME_OF_DELAY);
-	gotoxy(25, 18);
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-	printf("♡"); Sleep(TIME_OF_DELAY*3);
+	gotoxy(31, 18);
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	printf("♡"); Sleep(TIME_OF_DELAY * 3);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+	gotoxy(31, 18); printf("*.");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	gotoxy(25, 18);
 	printf("\b\b♥"); Sleep(TIME_OF_DELAY);
-	printf("\b\b\b♥"); Sleep(TIME_OF_DELAY);
 	printf("\b\b\b♥"); Sleep(TIME_OF_DELAY);
 	printf("\b\b\b♥"); Sleep(TIME_OF_DELAY);
 	printf("\b\b\b♥"); Sleep(TIME_OF_DELAY);
