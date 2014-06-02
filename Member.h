@@ -40,9 +40,9 @@ void PrintInfo(Member_t*, int);          // 구조체에 있는 회원정보를 
 
 // 2. 회원 등록 함수
 void headOfCase2(void);                                      // 회원 등록 헤드양식 출력
-void case2(FILE *fp, Member_t *id, int maxnum);              // 2. 회원 등록 실행 (회원이 등록되면 maxnum +1)
+int case2(FILE *fp, Member_t *id, int maxnum);               // 2. 회원 등록 실행 (회원이 등록되면 maxnum +1)
 int findMaxStudentNum(Member_t *id, int maxnum);             // 현재 저장된 학생들 중 가장 큰 학번 검색
-void inputNewMember(FILE *fp, Member_t *id, int maxnum);     // 새로운 회원 정보를 입력
+int inputNewMember(FILE *fp, Member_t *id, int maxnum);      // 새로운 회원 정보를 입력 (Maxnum 증가 여부 반환)
 int validName(char *str);                                    // 입력된 이름 valid 유무 확인
 void validNameErrorOn(void);                                 // 잘못된 이름 입력시 에러 메세지 On
 void validNameErrorOff(void);                                // 잘못된 이름 입력시 에러 메세지 Off
@@ -56,6 +56,7 @@ int repeatCellphone(Member_t *id, char *str, int maxnum);    // 입력된 전화
 void repeatCellphoneErrorOn(void);                           // 잘못된 전화번호 입력시 에러 메세지 On
 void repeatCellphoneErrorOff(void);                          // 잘못된 전화번호 입력시 에러 메세지 Off
 void closeCase2(void);                                       // 회원 등록 종료 화면 출력
+int inputMemberSave(void);                                   // 입력한 회원의 정보 저장 유무 확인
 
 // 6. 저장 함수 
 void SaveFile(FILE *fp, Member_t *id, int maxnum);           // 메모리에 저장되어 있는 내용을 파일로 저장
