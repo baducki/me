@@ -27,7 +27,7 @@ int main(void)
 
 		case '2': // 회원등록
 			choiceButton(menu_choice);
-			case2(fp, id, maxnum); maxnum++; // 회원 입력 후 maxnum +1
+			maxnum = case2(fp, id, maxnum); // 회원 입력 후 maxnum +1
 			break;
 
 		case '3': // 회원삭제
@@ -262,11 +262,12 @@ void headOfCase2(void)
 	printf("              └────────────────────────┘         ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
-void case2(FILE *fp, Member_t *id, int maxnum)   // 2. 회원 등록 실행
-{
+int case2(FILE *fp, Member_t *id, int maxnum)   // 2. 회원 등록 실행
+{         
 	system("cls");
 	headOfCase2();
-	inputNewMember(fp, id, maxnum);
+	maxnum += inputNewMember(fp, id, maxnum); // 회원등록이 완료되면 +1, 취소되면 0
+	return maxnum;
 }
 int findMaxStudentNum(Member_t *id, int maxnum)   // 현재 저장된 학생들 중 가장 큰 학번 검색
 {
@@ -277,7 +278,7 @@ int findMaxStudentNum(Member_t *id, int maxnum)   // 현재 저장된 학생들 
 	}
 	return maxstudentnum;
 }
-void inputNewMember(FILE *fp, Member_t *id, int maxnum)   // 새로운 회원 정보를 입력
+int inputNewMember(FILE *fp, Member_t *id, int maxnum)   // 새로운 회원 정보를 입력
 {
 	int i, j, valid = -1, repeatcheck = -1;
 	int maxstudentnum = findMaxStudentNum(id, maxnum); maxstudentnum++; // 학생 학번 중 가장 큰 학번을 찾은 후 +1
@@ -290,21 +291,43 @@ void inputNewMember(FILE *fp, Member_t *id, int maxnum)   // 새로운 회원 �
 	
 	while (valid)
 	{
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+		gotoxy(17, 6); printf("┌─────────────────────┐");
+		gotoxy(17, 7); printf("│"); gotoxy(61, 7); printf("│");
+		gotoxy(17, 8); printf("└─────────────────────┘");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 		gotoxy(20, 7);
 		gets(id[maxnum].Name);
 		valid = validName(id[maxnum].Name);
 	}
+	gotoxy(17, 6); printf("┌─────────────────────┐");
+	gotoxy(17, 7); printf("│"); gotoxy(61, 7); printf("│");
+	gotoxy(17, 8); printf("└─────────────────────┘");
 	validNameErrorOff(); valid = -1;
 
 	while (valid){
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+		gotoxy(17, 9); printf("┌─────────────────────┐");
+		gotoxy(17, 10); printf("│"); gotoxy(61, 10); printf("│");
+		gotoxy(17, 11); printf("└─────────────────────┘");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 		gotoxy(20, 10);
 		gets(id[maxnum].Address);
 		valid = validAddress(id[maxnum].Address);
 	}
+	gotoxy(17, 9); printf("┌─────────────────────┐");
+	gotoxy(17, 10); printf("│"); gotoxy(61, 10); printf("│");
+	gotoxy(17, 11); printf("└─────────────────────┘");
 	validAddressErrorOff(); valid = -1;
 
 	while (repeatcheck){
 		for (i = 0, j = 0; i < 13;){
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+			gotoxy(17, 12); printf("┌─────────────────────┐");
+			gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
+			gotoxy(17, 14); printf("└─────────────────────┘");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
 			if (i == 3 || i == 8){
 				id[maxnum].Cellphone[i] = '-'; i++; j += 2;
 			}
@@ -326,8 +349,31 @@ void inputNewMember(FILE *fp, Member_t *id, int maxnum)   // 새로운 회원 �
 		repeatcheck = repeatCellphone(id, id[maxnum].Cellphone, maxnum);
 		if (repeatcheck == -1) repeatCellphoneErrorOn();
 	}
+	gotoxy(17, 12); printf("┌─────────────────────┐");
+	gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
+	gotoxy(17, 14); printf("└─────────────────────┘");
 	repeatCellphoneErrorOff();
-	closeCase2();
+	valid = inputMemberSave();
+	if (valid == 0){
+		id[maxnum].Studentnum;
+		id[maxnum].IDNum;
+		id[maxnum].Name;
+		id[maxnum].Address;
+		id[maxnum].Cellphone;
+		j = 0;
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 16 * 10);
+		gotoxy(0, 26); printf("                 < 회원 등록이 취소 되었습니다 >   아무키나 누르세요       ");
+		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		gotoxy(74, 26); getche(); fflush(stdin);
+	}
+	else {
+		id[maxnum - 1].next = &id[maxnum];
+		id[maxnum].prev = &id[maxnum - 1];
+		id[maxnum].next = NULL;
+		j = 1;
+		closeCase2();
+	}
+	return j;
 }
 int validName(char *str)   // 이름에 한글 외 입력 금지
 {
@@ -436,6 +482,31 @@ void closeCase2(void)
 	gotoxy(0, 26); printf("                 < 회원 등록이 완료 되었습니다 >   아무키나 누르세요       ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 	gotoxy(74, 26); inputkey = getche();
+}
+int inputMemberSave(void)   // 입력한 회원의 정보 저장 유무 확인
+{
+	int key = -1, check = -1;
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 16 * 14);
+	gotoxy(0, 26); printf("                < 회원 등록 완료 > 저장하시겠습니까? (Y/N) 【 】           ");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	while (check != 1 || check != 0){
+		gotoxy(61, 26); key = getche();
+		if (key == 89 || key == 121){
+			check = 1; break;
+		}
+		else if (key == 78 || key == 110){
+			check = 0; break;
+		}
+		else{
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12 * 16);
+			gotoxy(0, 28); printf("                  Warning: Y(예) 혹은 N(아니요) 키를 입력하세요            ");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 16 * 14);
+			gotoxy(0, 26); printf("                < 회원 등록 완료 > 저장하시겠습니까? (Y/N) 【 】           ");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		}
+	}
+	gotoxy(0, 28); printf("                                                                           ");
+	return check;
 }
 
 // 6. 저장 함수
