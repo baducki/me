@@ -57,6 +57,9 @@ void repeatCellphoneErrorOn(void);                           // 잘못된 전화
 void repeatCellphoneErrorOff(void);                          // 잘못된 전화번호 입력시 에러 메세지 Off
 void closeCase2(void);                                       // 회원 등록 종료 화면 출력
 
+// 6. 저장 함수 
+void SaveFile(FILE *fp, Member_t *id, int maxnum);           // 메모리에 저장되어 있는 내용을 파일로 저장
+
 // 7. 종료 함수
 int saveCheck(void);                     // 종료 전 파일 저장 유무를 질문 (반환값: 입력여부)
 int checkSaveValue(int key);             // 파일 저장 유무 시 유저가 입력한 값을 검증
