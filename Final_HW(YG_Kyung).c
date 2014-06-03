@@ -280,7 +280,7 @@ int findMaxStudentNum(Member_t *id, int maxnum)   // 현재 저장된 학생들 
 }
 int inputNewMember(FILE *fp, Member_t *id, int maxnum)   // 새로운 회원 정보를 입력
 {
-	int i, j, valid = -1, repeatcheck = -1;
+	int i, j, valid = -1, repeatcheck = -1, count = 0;
 	int maxstudentnum = findMaxStudentNum(id, maxnum); maxstudentnum++; // 학생 학번 중 가장 큰 학번을 찾은 후 +1
 
 	id[maxnum].Studentnum = maxstudentnum;
@@ -291,63 +291,85 @@ int inputNewMember(FILE *fp, Member_t *id, int maxnum)   // 새로운 회원 정
 	
 	while (valid)
 	{
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-		gotoxy(17, 6); printf("┌─────────────────────┐");
-		gotoxy(17, 7); printf("│"); gotoxy(61, 7); printf("│");
-		gotoxy(17, 8); printf("└─────────────────────┘");
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		if (count == 0){
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+			gotoxy(17, 6); printf("┌─────────────────────┐");
+			gotoxy(17, 7); printf("│"); gotoxy(61, 7); printf("│");
+			gotoxy(17, 8); printf("└─────────────────────┘");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		}
 		gotoxy(20, 7);
 		gets(id[maxnum].Name);
 		valid = validName(id[maxnum].Name);
+		count++;
 	}
 	gotoxy(17, 6); printf("┌─────────────────────┐");
 	gotoxy(17, 7); printf("│"); gotoxy(61, 7); printf("│");
 	gotoxy(17, 8); printf("└─────────────────────┘");
-	validNameErrorOff(); valid = -1;
+	validNameErrorOff(); valid = -1; count = 0;
 
 	while (valid){
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-		gotoxy(17, 9); printf("┌─────────────────────┐");
-		gotoxy(17, 10); printf("│"); gotoxy(61, 10); printf("│");
-		gotoxy(17, 11); printf("└─────────────────────┘");
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		if (count == 0){
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+			gotoxy(17, 9); printf("┌─────────────────────┐");
+			gotoxy(17, 10); printf("│"); gotoxy(61, 10); printf("│");
+			gotoxy(17, 11); printf("└─────────────────────┘");
+			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+		}
 		gotoxy(20, 10);
 		gets(id[maxnum].Address);
 		valid = validAddress(id[maxnum].Address);
+		count++;
 	}
 	gotoxy(17, 9); printf("┌─────────────────────┐");
 	gotoxy(17, 10); printf("│"); gotoxy(61, 10); printf("│");
 	gotoxy(17, 11); printf("└─────────────────────┘");
-	validAddressErrorOff(); valid = -1;
+	validAddressErrorOff(); valid = -1; count = 0;
 
 	while (repeatcheck){
 		for (i = 0, j = 0; i < 13;){
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-			gotoxy(17, 12); printf("┌─────────────────────┐");
-			gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
-			gotoxy(17, 14); printf("└─────────────────────┘");
-			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-
+			if (count == 0){
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+				gotoxy(17, 12); printf("┌─────────────────────┐");
+				gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
+				gotoxy(17, 14); printf("└─────────────────────┘");
+				SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+			}
 			if (i == 3 || i == 8){
 				id[maxnum].Cellphone[i] = '-'; i++; j += 2;
 			}
 			else {
 				gotoxy(22 + i + j, 13);
 				id[maxnum].Cellphone[i] = getche();
-				if (id[maxnum].Cellphone[i] == 8 && i != 0){
-					printf(" "); i--;
+				if (i != 0 && id[maxnum].Cellphone[i] == 8){
+					if (i == 4 || i == 9){
+						i -=2;
+						j -= 2;
+						gotoxy(22 + i + j, 13);
+						printf(" \b");
+					}
+					else{
+						i--;
+						printf(" \b");
+					}
 				}
-				else {
+				else{
 					valid = validCellphone(id[maxnum].Cellphone[i]);
 					if (valid == 0) i++;
-					else validCellphoneErrorOn();
+					else {
+						validCellphoneErrorOn();
+						count++;
+					}
 				}
 			}
 		}
 		id[maxnum].Cellphone[i] = '\0';
 		validCellphoneErrorOff(); valid = -1;
 		repeatcheck = repeatCellphone(id, id[maxnum].Cellphone, maxnum);
-		if (repeatcheck == -1) repeatCellphoneErrorOn();
+		if (repeatcheck == -1) {
+			repeatCellphoneErrorOn();
+			count++;
+		}
 	}
 	gotoxy(17, 12); printf("┌─────────────────────┐");
 	gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
@@ -405,10 +427,15 @@ void validNameErrorOn(void)   // 잘못된 이름 입력시 에러 메세지 On
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12 * 16);
 	gotoxy(0, 28); printf("       Warning: 이름은 띄어쓰기 없이 4자이내로 한글만 입력하세요           ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-	gotoxy(19, 7); printf("                                         │");
-	gotoxy(19, 10); printf("                                         │");
-	gotoxy(19, 13); printf(" (     -      -      )                    │");
+	gotoxy(19, 7); printf("                                          ");
+	gotoxy(19, 10); printf("                                          ");
+	gotoxy(19, 13); printf(" (     -      -      )                    ");
 	headOfCase2();
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	gotoxy(17, 6); printf("┌─────────────────────┐");
+	gotoxy(17, 7); printf("│"); gotoxy(61, 7); printf("│");
+	gotoxy(17, 8); printf("└─────────────────────┘");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 void validNameErrorOff(void)   // 잘못된 이름 입력시 에러 메세지 Off
 {
@@ -428,9 +455,15 @@ void validAddressErrorOn(void)   // 잘못된 이름 입력시 에러 메세지 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12 * 16);
 	gotoxy(0, 28); printf("           Warning: 주소는 띄어쓰기 포함 20자이내로 입력하세요             ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-	gotoxy(19, 10); printf("                                         │");
+	gotoxy(19, 10); printf("                                         ");
 	gotoxy(19, 13); printf(" (     -      -      )                    │");
-	headOfCase2();	gotoxy(63, 7); printf("(입력완료)");
+	headOfCase2();
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	gotoxy(17, 9); printf("┌─────────────────────┐");
+	gotoxy(17, 10); printf("│"); gotoxy(61, 10); printf("│");
+	gotoxy(17, 11); printf("└─────────────────────┘");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	gotoxy(63, 7); printf("(입력완료)");
 }
 void validAddressErrorOff(void)   // 잘못된 주소 입력시 에러 메세지 Off
 {
@@ -459,6 +492,11 @@ void validCellphoneErrorOn(void)   // 잘못된 전화번호 입력시 에러 �
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12 * 16);
 	gotoxy(0, 28); printf("               Warning: 전화번호는 11자 이내 숫자만 입력하세요             ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	gotoxy(17, 12); printf("┌─────────────────────┐");
+	gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
+	gotoxy(17, 14); printf("└─────────────────────┘");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 void validCellphoneErrorOff(void)   // 잘못된 주소 입력시 에러 메세지 Off
 {
@@ -469,6 +507,12 @@ void repeatCellphoneErrorOn(void)   // 잘못된 전화번호 입력시 에러 �
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12 * 16);
 	gotoxy(0, 28); printf("         Warning: 기존 회원과 동일한 전화번호입니다! 다시 입력하세요       ");
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
+	gotoxy(17, 12); printf("┌─────────────────────┐");
+	gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
+	gotoxy(17, 14); printf("└─────────────────────┘");
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+	gotoxy(19, 13); printf(" (     -      -      )                    ");
 }
 void repeatCellphoneErrorOff(void)   // 잘못된 전화번호 입력시 에러 메세지 Off
 {
