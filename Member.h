@@ -1,3 +1,4 @@
+
 // 회원관리 프로그램 헤더파일
 
 #include <stdio.h>
@@ -81,3 +82,8 @@ void previousPageButton(void);           // 이전 페이지 버튼 On
 void nextPageButton(void);               // 다음 페이지 버튼 On
 void homePageButton(void);               // 다음 페이지 버튼 On
 void printfAllNodes(Member_t *head);     // Linked List를 이용해서 회원정보 출력
+
+int findDataIndex(Member_t *id, int maxnum);
+int validIDNum(char *data); //학번 확인
+void printSearchedData(Member_t *id, int dataIndex);
+void deleteData(Member_t *id, int *dataIndex);
