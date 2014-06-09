@@ -12,16 +12,24 @@ void headOfCase1(void)   // 회원 보기 헤드양식 출력
 }
 void printInfo(Member_t *id, int maxnum)   // 구조체에 있는 회원정보를 출력
 {
-	int i, j, check, temp, pre = 0;   // 변수: i는 for문을 위한 변수, j는 위치 지정을 위한 변수, check는 입력키 체크
+	int i, j, check, temp, count = 0, pre = 0;   // 변수: i는 for문을 위한 변수, j는 위치 지정을 위한 변수, check는 입력키 체크
 	// temp는 이전 페이지로 돌아가기 위한 변수, pre는 이전, 다음 페이지 출력 확인을 위한 변수
 	headOfCase1();
 	for (i = 1, j = 1; i < maxnum; i++, j++){
 		if (j>NUM_OF_PRINT) j -= NUM_OF_PRINT;  // gotoxy로 위치 지정 출력하기 위해 j 변수 선언 후 j로 출력 열 위치 조정
-		gotoxy(1, j + 3); printf("%3d", i);
-		gotoxy(6, j + 3); printf("%6d", id[i].Studentnum);
-		gotoxy(14, j + 3); printf("%.8s", id[i].Name);
-		gotoxy(24, j + 3); printf("%.30s", id[i].Address);
-		gotoxy(59, j + 3); printf("%.14s", id[i].Cellphone);
+		if (id[i].Studentnum != 0){
+			gotoxy(1, j + 3); printf("%3d", i);
+			gotoxy(6, j + 3); printf("%6d", id[i].Studentnum);
+			gotoxy(14, j + 3); printf("%.8s", id[i].Name);
+			gotoxy(24, j + 3); printf("%.30s", id[i].Address);
+			gotoxy(59, j + 3); printf("%.14s", id[i].Cellphone);
+		}
+		else {
+			gotoxy(1, j + 3); printf("%3d", i);
+			textColor(12 * 16);
+			gotoxy(6, j + 3); printf("                         삭제된 회원입니다!                       ");
+			textColor(7);
+		}
 
 		if (i != (maxnum - 1)){
 			if (i%NUM_OF_PRINT == 0 && pre == 0){
@@ -34,7 +42,7 @@ void printInfo(Member_t *id, int maxnum)   // 구조체에 있는 회원정보를 출력
 				check = pauseWithLeftRight();
 				temp = i - NUM_OF_PRINT;
 				if (check == 75){
-					i = i - NUM_OF_PRINT * 2; pre--;
+					i = i - NUM_OF_PRINT * 2; pre--; count--;
 					previousPageButton();
 				}
 				else {

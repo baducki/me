@@ -71,8 +71,14 @@ void closeCase2(void);                                       // È¸¿ø µî·Ï Á¾·á È
 int inputMemberSave(void);                                   // ÀÔ·ÂÇÑ È¸¿øÀÇ Á¤º¸ ÀúÀå À¯¹« È®ÀÎ
 void case2UI(void);                                          // È¸¿øµî·Ï UI
 
+// 3. È¸¿ø »èÁ¦ ÇÔ¼ö
+void deleteMemberInfo(Member_t *id);                         // 3. È¸¿ø »èÁ¦ ½ÇÇà 
+void case3DeleteSearchOptionUI(void);                        // È¸¿øÁ¤º¸ »èÁ¦ Áß °Ë»ö ¿É¼Ç UI
+int deleteInfo(Member_t *id, int i);                         // È¸¿ø »èÁ¦
+
+
 // 4. È¸¿ø Á¤º¸ ¼öÁ¤ ÇÔ¼ö
-void adjustMemberInfo(Member_t *id);   // È¸¿ø Á¤º¸ ¼öÁ¤
+void adjustMemberInfo(Member_t *id);   // 4. È¸¿ø Á¤º¸ ¼öÁ¤ ½ÇÇà
 int searchStudentID(void);             // È¸¿ø Á¤º¸ °Ë»ö ¿É¼Ç Áß ÇÐ¹ø °Ë»ö
 int searchName(char *name);            // È¸¿ø Á¤º¸ °Ë»ö ¿É¼Ç Áß ÀÌ¸§ °Ë»ö
 int searchCellphone(char *cellphone);  // È¸¿ø Á¤º¸ °Ë»ö ¿É¼Ç Áß ÀüÈ­¹øÈ£ °Ë»ö

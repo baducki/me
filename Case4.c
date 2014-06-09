@@ -300,7 +300,7 @@ int printSameNameMember(Member_t *id, int *sameName, int j)
 		gotoxy(0, 26); printf("               검색할 회원의 No번호를 입력하세요  【 】                   ");
 		textColor(7);
 		gotoxy(52, 26); i = getch();
-		if (i > 48 && i <= j + 48) return i-49;
+		if (i > 48 && i <= j + 48) return i-48;
 		else {
 			textColor(12 * 16);
 			gotoxy(0, 28); printf("                Warning: 검색결과에 있는 숫자를 입력하세요                ");
