@@ -122,28 +122,18 @@ void printfAllNodes(Member_t *head) // Linked List를 이용해서 회원정보 출력
 
 void screenClearUp()
 {
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD coordScreen = { 0, 0 };    // home for the cursor 
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	DWORD dwConSize;
-
-	GetConsoleScreenBufferInfo(hConsole, &csbi);
-	dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+	int i;
 	cursorOff();
-	int i, j;
-	for (i = 28; i <= csbi.dwSize.X + 31; i++)
+	gotoxy(0, 27);
+	for (i = 0; i < 28; i++)
 	{
-		Sleep(1);
-		coordScreen.Y = i;
-		for (j = 28; j <= i; j++)
-		{
-			coordScreen.X = j;
-			coordScreen.Y--;
-			SetConsoleCursorPosition(hConsole, coordScreen);
-			printf(" ");
-		}
+		printf("\n"); Sleep(14);
 	}
-	SetConsoleCursorPosition(hConsole, coordScreen);
+	gotoxy(0, 0);
+	textColor(16 * 14);
+	lineClear();
+	textColor(7);
+	Sleep(14);
 	cursorOn();
 }
 

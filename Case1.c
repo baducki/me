@@ -3,7 +3,7 @@
 // 1. 회원 보기 함수
 void headOfCase1(void)   // 회원 보기 헤드양식 출력
 {
-	system("cls");
+	gotoxy(0, 0);
 	textColor(16 * 14);
 	cursorOff();
 	printf("                             < 회원  List >                                ");
