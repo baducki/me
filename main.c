@@ -89,6 +89,7 @@ int inputInfo(FILE *fp, Member_t *id)   // data.txt 파일을 구조체에 저장
 		if (feof(fp)) break;
 	}
 	id[maxnum + 1].Studentnum = 0;
+	id[maxnum + 1].next = NULL;
 	j = i; i = 0;
 	while (i<j){
 		id[i].prev = &id[i - 1];

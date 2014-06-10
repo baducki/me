@@ -24,7 +24,6 @@
 
 typedef struct Member {
 	int Studentnum;         // 학번
-	char IDNum[7];
 	char Name[NAME_MAXCHAR];
 	char Address[ADDRESS_MAXCHAR];
 	char Cellphone[CELLPHONE_MAXCHAR];
@@ -75,6 +74,7 @@ void case2UI(void);                                          // 회원등록 UI
 void deleteMemberInfo(Member_t *id);                         // 3. 회원 삭제 실행 
 void case3DeleteSearchOptionUI(void);                        // 회원정보 삭제 중 검색 옵션 UI
 int deleteInfo(Member_t *id, int i);                         // 회원 삭제
+void deleteLinkedList(Member_t *id, int i);                  // 회원 Linked List 삭제
 
 
 // 4. 회원 정보 수정 함수

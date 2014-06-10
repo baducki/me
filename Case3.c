@@ -66,10 +66,7 @@ int deleteInfo(Member_t *id, int i)
 			}
 		}
 		else if (choice == 89 || choice == 121) {
-			id[i].Address[0] = '\0';
-			id[i].Cellphone[0] = '\0';
-			id[i].Name[0] = '\0';
-			id[i].Studentnum = 0;
+			deleteLinkedList(id, i);
 			cursorOff();
 			textColor(16 * 10);
 			gotoxy(0, 26); printf("           < 회원 정보가 삭제되었습니다 >   아무 키나 누르세요             ");
@@ -94,6 +91,27 @@ int deleteInfo(Member_t *id, int i)
 		}
 	}
 	return 0;
+}
+
+void deleteLinkedList(Member_t *id, int i)
+{
+	Member_t *temp = (Member_t*)malloc(sizeof(Member_t));
+
+	temp->prev = id[i].prev;
+	temp->next = id[i].next;
+	
+	if (id[i].next != NULL){
+		id[i].prev->next = temp->next;
+		id[i].next->prev = temp->prev;
+	}
+	else id[i].prev->next = NULL;
+
+	id[i].Address[0] = '\0';
+	id[i].Cellphone[0] = '\0';
+	id[i].Name[0] = '\0';
+	id[i].Studentnum = 0;
+
+	free(temp);
 }
 
 void case3DeleteSearchOptionUI(void)  // 회원정보 수정 중 검색 옵션 UI
