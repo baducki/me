@@ -1,15 +1,21 @@
 #include "common.h"
 
 // 6. 저장 함수
-void saveFile(FILE *fp, Member_t *id, int maxnum)   // 메모리에 저장되어 있는 내용을 파일로 저장
+void saveFile(FILE *fp, Member_t *id)   // 메모리에 저장되어 있는 내용을 파일로 저장
 {
 	fp = fopen("data.txt", "wt");
 	fprintf(fp, "회원아이디\t회원이름\t회원주소\t핸드폰번호\n");     //맨첫줄 저장
+	
+	Member_t *printmember = (Member_t *)malloc(sizeof(Member_t));
+	printmember->next = id[0].next;
 
-	for (int i = 1; i < maxnum; i++)
-		fprintf(fp, "%d\t%s\t%s\t%s\n", id[i].Studentnum, id[i].Name, id[i].Address, id[i].Cellphone);
+	while(printmember->next != NULL){
+		fprintf(fp, "%d\t%s\t%s\t%s\n", printmember->next->Studentnum, printmember->next->Name, printmember->next->Address, printmember->next->Cellphone);
+		printmember->next = printmember->next->next;
+	}
 
 	fclose(fp);
+	free(printmember);
 	cursorOff();
 	system("cls");
 	fileSaveUI();
@@ -19,6 +25,7 @@ void saveFile(FILE *fp, Member_t *id, int maxnum)   // 메모리에 저장되어 있는 내
 
 void fileSaveUI(void)   // 파일 저장 UI 출력
 {
+	gotoxy(0, 0);
 	textColor(16 * 14);
 	printf("                                < 파일 저장 >                              ");
 	textColor(7);

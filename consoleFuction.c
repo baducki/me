@@ -119,3 +119,56 @@ void printfAllNodes(Member_t *head) // Linked List를 이용해서 회원정보 출력
 	}
 	printf("\n");
 }
+
+void screenClearUp()
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD coordScreen = { 0, 0 };    // home for the cursor 
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	DWORD dwConSize;
+
+	GetConsoleScreenBufferInfo(hConsole, &csbi);
+	dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+	cursorOff();
+	int i, j;
+	for (i = 28; i <= csbi.dwSize.X + 31; i++)
+	{
+		Sleep(1);
+		coordScreen.Y = i;
+		for (j = 28; j <= i; j++)
+		{
+			coordScreen.X = j;
+			coordScreen.Y--;
+			SetConsoleCursorPosition(hConsole, coordScreen);
+			printf(" ");
+		}
+	}
+	SetConsoleCursorPosition(hConsole, coordScreen);
+	cursorOn();
+}
+
+void screenClearDelete()
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD coordScreen = { 0, 0 };    // home for the cursor 
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	DWORD dwConSize;
+
+	GetConsoleScreenBufferInfo(hConsole, &csbi);
+	dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+	cursorOff();
+	int i, j;
+	for (i = 0; i <= csbi.dwSize.X + 31; i++)
+	{
+		coordScreen.Y = i;
+		for (j = 0; j <= i; j++)
+		{
+			coordScreen.X = j;
+			coordScreen.Y--;
+			SetConsoleCursorPosition(hConsole, coordScreen);
+			printf(" ");
+		}
+	}
+	SetConsoleCursorPosition(hConsole, coordScreen);
+	cursorOn();
+}

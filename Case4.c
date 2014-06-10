@@ -51,6 +51,18 @@ void adjustMemberInfo(Member_t *id)
 	}
 }
 
+int searchInfoIDnum(Member_t *id, int idnum)
+{
+	int i;
+	for (i = 1; id[i].Studentnum != 0; i++){
+		if (idnum == id[i].Studentnum) break;
+	}
+	if (id[i].Studentnum == 0) i = -1;
+	curtainEffect();
+	case4PrintInfo(id, i);
+	return i;
+}
+
 int searchCellphone(char *cellphone)
 {
 	int valid = -1, count = 0;    // valid는 전화번호가 유효한지 확인, count는 에러메세지가 필요한지 확인
@@ -129,11 +141,11 @@ int searchInfoCellphone(Member_t *id, char *cellphone)
 	for (i = 1; id[i].Studentnum != 0; i++){
 		if (!strcmp(cellphone, id[i].Cellphone)) break;
 	}
-	if (id[i].Studentnum == 0) return -1;
-	else {
-		curtainEffect();
-		case4PrintInfo(id, i);
-	}
+	if (id[i].Studentnum == 0) i = -1;
+	
+	curtainEffect();
+	case4PrintInfo(id, i);
+
 	return i;
 }
 
@@ -181,18 +193,6 @@ int insertStudentNum(int line, int row, int menu)
 	return -1;
 }
 
-int searchInfoIDnum(Member_t *id, int idnum)
-{
-	int i;
-	for (i = 1; id[i].Studentnum != 0; i++){
-		if (idnum == id[i].Studentnum) break;
-	}
-	if (id[i].Studentnum == 0) i = -1;
-	curtainEffect();
-	case4PrintInfo(id, i);
-	return i;
-}
-
 int searchName(char *name)
 {
 	int valid = -1, count = 0;    // valid는 이름이 유효한지 확인, count는 에러메세지가 필요한지 확인
@@ -219,7 +219,6 @@ int searchName(char *name)
 	gotoxy(0, 28); lineClear();
 
 	if (valid == 0) return 0;
-	name = NULL;
 	return -1;
 }
 
@@ -235,14 +234,19 @@ int searchInfoName(Member_t *id, char *name)
 			j++;
 		}
 	}
-	if (j == 0) j = -1;
+	if (j == 0){
+		curtainEffect();
+		case4PrintInfo(id, -1);
+		return -1;
+	}
 	else if (j > 1){
 		j = printSameNameMember(id, sameName, j);
+		j--;
+		curtainEffect();
+		case4PrintInfo(id, sameName[j]);
+		return sameName[j];
 	}
-	j--;
-	curtainEffect();
-	case4PrintInfo(id, sameName[j]);
-	return sameName[j];
+	return 0;
 }
 
 int insertName(int line, int row, char *name, int menu)
@@ -511,7 +515,7 @@ int adjustInfoMenuChoice(void)
 		if (choice == 224){
 			choice = getch();
 			if (choice == 72){
-				homePageButton();
+				homePageButton(1);
 				return -1;
 			}
 		}

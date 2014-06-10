@@ -1,5 +1,6 @@
 #include "common.h"
 
+
 void deleteMemberInfo(Member_t *id)
 {
 	int choice = 0;	                    // 검색옵션 선택 변수
@@ -52,16 +53,16 @@ void deleteMemberInfo(Member_t *id)
 int deleteInfo(Member_t *id, int i)
 {
 	int choice;
-	textColor(16 * 14);
-	gotoxy(0, 26); printf("        위 회원정보를 삭제하시겠습니까? (Y/N) 【 】     메인 페이지 [↑]   ");
-	textColor(7);
-	while (1){
+	while (i != -1){
+		textColor(16 * 14);
+		gotoxy(0, 26); printf("        위 회원정보를 삭제하시겠습니까? (Y/N) 【 】     메인 페이지 [↑]   ");
+		textColor(7);
 		gotoxy(48, 26); textColor(16 * 14); printf(" "); textColor(7);
 		gotoxy(48, 26); choice = getche();
 		if (choice == 224){
 			choice = getch();
 			if (choice == 72){
-				homePageButton();
+				homePageButton(1);
 				return -1;
 			}
 		}
@@ -71,7 +72,9 @@ int deleteInfo(Member_t *id, int i)
 			textColor(16 * 10);
 			gotoxy(0, 26); printf("           < 회원 정보가 삭제되었습니다 >   아무 키나 누르세요             ");
 			textColor(7);
+			deleteCompleteUI();
 			getch();
+			screenClearDelete();
 			cursorOn();
 			return -1;
 		}
@@ -90,7 +93,7 @@ int deleteInfo(Member_t *id, int i)
 			textColor(7);
 		}
 	}
-	return 0;
+	return -1;
 }
 
 void deleteLinkedList(Member_t *id, int i)
@@ -135,4 +138,17 @@ void case3DeleteSearchOptionUI(void)  // 회원정보 수정 중 검색 옵션 UI
 	gotoxy(7, 8);  printf("4. 취소");
 	textColor(7);
 	gotoxy(4, 12); printf("검색 옵션 선택【 】");
+}
+
+void deleteCompleteUI(void)
+{
+	gotoxy(0, 14);  printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"); 
+	gotoxy(0, 15);  printf("■□□□■■■□□□□□■□■■■■■□□□□□■□□□□□■□□□□□■"); 
+	gotoxy(0, 16);  printf("■□■■□■■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■"); 
+	gotoxy(0, 17);  printf("■□■■■□■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■");
+	gotoxy(0, 18);  printf("■□■■■□■□□□□□■□■■■■■□□□□□■■■□■■■□□□□□■");
+	gotoxy(0, 19);  printf("■□■■■□■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■");
+	gotoxy(0, 20);  printf("■□■■□■■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■");
+	gotoxy(0, 21);  printf("■□□□■■■□□□□□■□□□□□■□□□□□■■■□■■■□□□□□■");
+	gotoxy(0, 22);  printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
 }

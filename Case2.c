@@ -1,29 +1,21 @@
 #include "common.h"
 
 // 2. 회원 등록 함수
-void case2(FILE *fp, Member_t *id, int *maxnum)   // 2. 회원 등록 실행
+void case2(FILE *fp, Member_t *id)   // 2. 회원 등록 실행
 {
 	system("cls");
 	case2UI();
-	inputNewMember(fp, id, maxnum); // 회원등록이 완료되면 +1, 취소되면 0
+	case2CheckListUI(0);
+	inputNewMember(fp, id);          // 회원등록이 완료되면 +1, 취소되면 0
 }
 
-int findMaxStudentNum(Member_t *id, int maxnum)   // 현재 저장된 학생들 중 가장 큰 학번 검색
+void inputNewMember(FILE *fp, Member_t *id)   // 새로운 회원 정보를 입력
 {
-	int i, maxstudentnum;
-	for (i = 2; i <= maxnum; i++){
-		if (id[i - 1].Studentnum < id[i].Studentnum)
-			maxstudentnum = id[i].Studentnum;
-	}
-	return maxstudentnum;
-}
-void inputNewMember(FILE *fp, Member_t *id, int *maxnum)   // 새로운 회원 정보를 입력
-{
-	int i, j, valid = -1, repeatcheck = -1, count = 0;
-	int maxstudentnum = findMaxStudentNum(id, *maxnum);
+	int i, j, maxnum, maxstudentnum, valid = -1, repeatcheck = -1, count = 0;
+	findMaxStudentNum(id, &maxnum, &maxstudentnum);
 	maxstudentnum++; // 학생 학번 중 가장 큰 학번을 찾은 후 +1
 
-	id[*maxnum].Studentnum = maxstudentnum;
+	id[maxnum].Studentnum = maxstudentnum;
 
 	gotoxy(20, 4); printf("%d", maxstudentnum);
 	gotoxy(63, 4); printf("(자동생성)");
@@ -38,13 +30,15 @@ void inputNewMember(FILE *fp, Member_t *id, int *maxnum)   // 새로운 회원 정보를
 			textColor(7);
 		}
 		gotoxy(20, 7);
-		gets(id[*maxnum].Name);
-		valid = validName(id[*maxnum].Name, 1);
+		gets(id[maxnum].Name);
+		valid = validName(id[maxnum].Name, 1);
+		case2CheckListUI(1);
 		count++;
 	}
 	gotoxy(17, 6); printf("┌─────────────────────┐");
 	gotoxy(17, 7); printf("│"); gotoxy(61, 7); printf("│");
 	gotoxy(17, 8); printf("└─────────────────────┘");
+	case2CheckListUI(0);
 	validNameErrorOff(); valid = -1; count = 0;
 
 	while (valid){
@@ -56,13 +50,15 @@ void inputNewMember(FILE *fp, Member_t *id, int *maxnum)   // 새로운 회원 정보를
 			textColor(7);
 		}
 		gotoxy(20, 10);
-		gets(id[*maxnum].Address);
-		valid = validAddress(id[*maxnum].Address, 0);
+		gets(id[maxnum].Address);
+		valid = validAddress(id[maxnum].Address, 0);
+		case2CheckListUI(1);
 		count++;
 	}
 	gotoxy(17, 9); printf("┌─────────────────────┐");
 	gotoxy(17, 10); printf("│"); gotoxy(61, 10); printf("│");
 	gotoxy(17, 11); printf("└─────────────────────┘");
+	case2CheckListUI(0);
 	validAddressErrorOff(); valid = -1; count = 0;
 
 	while (repeatcheck){
@@ -75,12 +71,12 @@ void inputNewMember(FILE *fp, Member_t *id, int *maxnum)   // 새로운 회원 정보를
 				textColor(7);
 			}
 			if (i == 3 || i == 8){
-				id[*maxnum].Cellphone[i] = '-'; i++; j += 2;
+				id[maxnum].Cellphone[i] = '-'; i++; j += 2;
 			}
 			else {
 				gotoxy(22 + i + j, 13);
-				id[*maxnum].Cellphone[i] = getche();
-				if (i != 0 && id[*maxnum].Cellphone[i] == 8){
+				id[maxnum].Cellphone[i] = getche();
+				if (i != 0 && id[maxnum].Cellphone[i] == 8){
 					if (i == 4 || i == 9){
 						printf("  \b\b");
 						i -= 2;
@@ -94,18 +90,19 @@ void inputNewMember(FILE *fp, Member_t *id, int *maxnum)   // 새로운 회원 정보를
 					}
 				}
 				else{
-					valid = validCellphone(id[*maxnum].Cellphone[i]);
+					valid = validCellphone(id[maxnum].Cellphone[i]);
 					if (valid == 0) i++;
 					else {
 						validCellphoneErrorOn();
+						case2CheckListUI(1);
 						count++;
 					}
 				}
 			}
 		}
-		id[*maxnum].Cellphone[i] = '\0';
+		id[maxnum].Cellphone[i] = '\0';
 		validCellphoneErrorOff(); valid = -1;
-		repeatcheck = repeatCellphone(id, id[*maxnum].Cellphone, *maxnum);
+		repeatcheck = repeatCellphone(id, id[maxnum].Cellphone, maxnum);
 		if (repeatcheck == -1) {
 			repeatCellphoneErrorOn(0);
 			count++;
@@ -114,14 +111,15 @@ void inputNewMember(FILE *fp, Member_t *id, int *maxnum)   // 새로운 회원 정보를
 	gotoxy(17, 12); printf("┌─────────────────────┐");
 	gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
 	gotoxy(17, 14); printf("└─────────────────────┘");
+	case2CheckListUI(0);
 	repeatCellphoneErrorOff();
 	valid = inputMemberSave();
 	cursorOff();
 	if (valid == 0){
-		id[*maxnum].Studentnum = 0;
-		id[*maxnum].Name;
-		id[*maxnum].Address;
-		id[*maxnum].Cellphone;
+		id[maxnum].Studentnum = 0;
+		id[maxnum].Name;
+		id[maxnum].Address;
+		id[maxnum].Cellphone;
 		j = 0;
 		textColor(16 * 10);
 		gotoxy(0, 26); printf("                 < 회원 등록이 취소 되었습니다 >   아무키나 누르세요       ");
@@ -129,16 +127,26 @@ void inputNewMember(FILE *fp, Member_t *id, int *maxnum)   // 새로운 회원 정보를
 		gotoxy(74, 26); getche(); fflush(stdin);
 	}
 	else {
-		id[*maxnum - 1].next = &id[*maxnum];
-		id[*maxnum].prev = &id[*maxnum - 1];
-		id[*maxnum].next = NULL;
+		id[maxnum - 1].next = &id[maxnum];
+		id[maxnum].prev = &id[maxnum - 1];
+		id[maxnum].next = NULL;
 		j = 1;
 		closeCase2();
 	}
 	cursorOn();
-	id[*maxnum + 1].Studentnum = 0;
-	*maxnum += j;
+	id[maxnum + 1].Studentnum = 0;
 }
+
+void findMaxStudentNum(Member_t *id, int *maxnum, int *maxstudentnum)   // 현재 저장된 학생들 중 가장 큰 학번 검색
+{
+	int i;
+	for (i = 2; id[i].next != NULL; i++){
+		if (id[i - 1].Studentnum < id[i].Studentnum)
+			*maxstudentnum = id[i].Studentnum;
+	}
+	*maxnum = i + 1;
+}
+
 int validName(char *str, int key)   // 이름에 한글 외 입력 금지
 {
 	int i = 0, len = strlen(str), check = 0;
@@ -177,6 +185,7 @@ void validNameErrorOn(int key)   // 잘못된 이름 입력시 에러 메세지 On
 		gotoxy(19, 10); printf("                                          ");
 		gotoxy(19, 13); printf(" (     -      -      )                    ");
 		case2UI();
+		case2CheckListUI(1);
 		textColor(12);
 		gotoxy(17, 6); printf("┌─────────────────────┐");
 		gotoxy(17, 7); printf("│"); gotoxy(61, 7); printf("│");
@@ -192,7 +201,7 @@ void validNameErrorOff(void)   // 잘못된 이름 입력시 에러 메세지 Off
 int validAddress(char *str, int menu)   // 입력된 주소 valid 유무 확인
 {
 	int i = 0, len = strlen(str), check = 0;
-	if (len > 40) {
+	if (len > 30) {
 		validAddressErrorOn(menu); check = -1;
 	}
 	return check;
@@ -200,12 +209,13 @@ int validAddress(char *str, int menu)   // 입력된 주소 valid 유무 확인
 void validAddressErrorOn(int menu)   // 잘못된 이름 입력시 에러 메세지 On
 {
 	textColor(12 * 16);
-	gotoxy(0, 28); printf("           Warning: 주소는 띄어쓰기 포함 20자이내로 입력하세요             ");
+	gotoxy(0, 28); printf("           Warning: 주소는 띄어쓰기 포함 15자이내로 입력하세요             ");
 	textColor(7);
 	if (menu == 0){
 		gotoxy(19, 10); printf("                                         ");
 		gotoxy(19, 13); printf(" (     -      -      )                    │");
 		case2UI();
+		case2CheckListUI(1);
 		textColor(12);
 		gotoxy(17, 9); printf("┌─────────────────────┐");
 		gotoxy(17, 10); printf("│"); gotoxy(61, 10); printf("│");
@@ -243,6 +253,7 @@ void validCellphoneErrorOn(void)   // 잘못된 전화번호 입력시 에러 메세지 On
 	gotoxy(17, 12); printf("┌─────────────────────┐");
 	gotoxy(17, 13); printf("│"); gotoxy(61, 13); printf("│");
 	gotoxy(17, 14); printf("└─────────────────────┘");
+	case2CheckListUI(1);
 	textColor(7);
 }
 void validCellphoneErrorOff(void)   // 잘못된 주소 입력시 에러 메세지 Off
@@ -261,6 +272,7 @@ void repeatCellphoneErrorOn(int menu)   // 잘못된 전화번호 입력시 에러 메세지 On
 		gotoxy(17, 14); printf("└─────────────────────┘");
 		textColor(7);
 		gotoxy(19, 13); printf(" (     -      -      )                    ");
+		case2CheckListUI(1);
 	}
 }
 void repeatCellphoneErrorOff(void)   // 잘못된 전화번호 입력시 에러 메세지 Off
@@ -313,36 +325,38 @@ void case2UI(void)   // 회원등록 UI 출력
 	gotoxy(17, 4); printf("│"); gotoxy(61, 4); printf("│");
 	printf("\n                 └─────────────────────┘            ");
 	printf("                 ┌─────────────────────┐            ");
-	printf("   ①      이름 :│");
+	printf("           이름 :│");
 	gotoxy(61, 7); printf("│            ");
 	printf("                 └─────────────────────┘            ");
 	printf("                 ┌─────────────────────┐            ");
-	printf("   ②      주소 :│");
-	gotoxy(61, 10); printf("│            ");
+	printf("           주소 :│");
+	gotoxy(59, 10); printf("  │            ");
 	printf("                 └─────────────────────┘            ");
 	printf("                 ┌─────────────────────┐            ");
-	printf("   ③  전화번호 :│ (     -      -      )                    │            ");
+	printf("       전화번호 :│ (     -      -      )                    │            ");
 	printf("                 └─────────────────────┘            ");
 	lineClear();
 	lineClear();
-	textColor(14);
-	printf("              ┌───────< 입력시 주의 사항 >───────┐         ");
+}
+
+void case2CheckListUI(int menu)
+{
+	if(menu == 0) textColor(10);
+	else textColor(12);
+	gotoxy(0, 17);
+	printf("              ┌              < 입력 시 주의사항 >              ┐         ");
 	printf("              │                                                │         ");
-	printf("              │  "); textColor(15);
-	printf("1. 학번: 자동으로 생성"); textColor(14);
-	printf("                        │         ");
-	printf("              │  "); textColor(15);
-	printf("2. 이름: 띄어쓰기 없이 4자이내 한글만 입력"); textColor(14);
-	printf("    │         ");
-	printf("              │  "); textColor(15);
-	printf("3. 주소: 띄어쓰기 포함 20자 이내 입력"); textColor(14);
-	printf("         │         ");
-	printf("              │  "); textColor(15);
-	printf("4. 전화번호: 11자리 이내 숫자 입력"); textColor(14);
-	printf("            │         ");
-	printf("              │  "); textColor(12);
-	printf("5. 프로그램 종료 전 TXT파일 저장 필요"); textColor(14);
-	printf("         │         ");
-	printf("              └────────────────────────┘         ");
+	printf("              │                                                │         ");
+	printf("              │                                                │         ");
+	printf("              │                                                │         ");
+	printf("              │                                                │         ");
+	printf("              │                                                │         ");
+	printf("              └                                                ┘         ");
+	textColor(15);
+	gotoxy(19, 19); printf("1. 학번: 자동으로 생성");
+	gotoxy(19, 20); printf("2. 이름: 띄어쓰기 없이 4자이내 한글만 입력");
+	gotoxy(19, 21); printf("3. 주소: 띄어쓰기 포함 15자 이내 입력");
+	gotoxy(19, 22); printf("4. 전화번호: 11자리 이내 숫자 입력");
+	gotoxy(19, 23); printf("5. 프로그램 종료 전 TXT파일 저장 필요");
 	textColor(7);
 }

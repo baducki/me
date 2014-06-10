@@ -5,41 +5,45 @@
 
 int main(void)
 {
+	SetConsoleTitleA("  회원 관리 프로그램 made by YG & KYUNG");
 	system("mode con lines=30 cols=75");  // 윈도우 창 화면 크기를 고정
 	FILE *fp = NULL;
 	Member_t id[NUM_OF_MEMBERS];
 
-	unsigned int maxnum = inputInfo(fp, id); // maxnum는 현재 등록된 전체 회원 수
-	                                         // InputInfo : data.txt파일을 열고 구조체에 저장
-	unsigned int saveneed = 0;               // saveneed는 세이브 필요 유무를 체크하는 변수
-	int menu_choice = 0;                     // menu_choice는 유저가 선택하는 메뉴값 변수
-	int error = 0;                           // menu 선택 시 error 발생에 따른 error 메세지 출력을 위한 변수
+	inputInfo(fp, id);                    // InputInfo : data.txt파일을 열고 구조체에 저장
+	                   
+	unsigned int saveneed = 0;            // saveneed는 세이브 필요 유무를 체크하는 변수
+	int menu_choice = 0;                  // menu_choice는 유저가 선택하는 메뉴값 변수
+	int error = 0;                        // menu 선택 시 error 발생에 따른 error 메세지 출력을 위한 변수
 
 	while (menu_choice != -1)                // -1 (종료) 일 때 프로그램 종료
 	{
 		menu_choice = mainMenu(&error);
-
 		switch (menu_choice)
 		{
 		case '1': //회원정보보기 
 			choiceButton(menu_choice);      // 메뉴 버튼 입력 시 클릭 효과
-			printInfo(id, maxnum);          // 구조체에 저장된 회원정보를 화면에 출력
+			screenClearUp();
+			printInfo(id);          // 구조체에 저장된 회원정보를 화면에 출력
 			break;
 
 		case '2': // 회원등록
 			choiceButton(menu_choice);
-			case2(fp, id, &maxnum); // 회원 입력 후 maxnum +1
+			screenClearUp();
+			case2(fp, id); // 회원 입력 후 maxnum +1
 			saveneed++;
 			break;
 
 		case '3': // 회원삭제
 			choiceButton(menu_choice);
+			screenClearUp();
 			deleteMemberInfo(id);
 			saveneed++;
 			break;
 
 		case '4': // 정보수정
 			choiceButton(menu_choice);
+			screenClearUp();
 			adjustMemberInfo(id);
 			saveneed++;
 			break;
@@ -51,9 +55,10 @@ int main(void)
 		case '6': // 저장하기
 			choiceButton(menu_choice);
 			menu_choice = saveCheck();
+			screenClearUp();
 			if (menu_choice == 1)
 			{
-				saveFile(fp, id, maxnum);
+				saveFile(fp, id);
 				saveneed = 0;
 			}
 			break;
@@ -61,7 +66,8 @@ int main(void)
 		case '7': // 종료
 			choiceButton(menu_choice);
 			if (saveneed > 0) menu_choice = saveCheck();
-			if (menu_choice == 1) saveFile(fp, id, maxnum);
+			if (menu_choice == 1) saveFile(fp, id);
+			screenClearUp();
 			menu_choice = -1;
 			break;
 		}
@@ -71,35 +77,37 @@ int main(void)
 }
 
 // Main에 포함된 함수
-int inputInfo(FILE *fp, Member_t *id)   // data.txt 파일을 구조체에 저장
+void inputInfo(FILE *fp, Member_t *id)   // data.txt 파일을 구조체에 저장
 {
-	char idnum[11];
+	char idnum[11];  // 학번을 String으로 입력받기 위한 임시 변수 -> int형 Studentnum 으로 변환
 	if ((fp = fopen("data.txt", "r")) == NULL){
 		fprintf(stderr, "Error opening file <%s>", "data.txt");
-		return -1;
+		return ;
 	}
-	int j, i = 0, maxnum = 0;
+	int i = 0;
 	while (1){
 		fscanf(fp, "%[^\t]\t%[^\t]\t%[^\t]\t%[^\n]\n", idnum, id[i].Name, id[i].Address, id[i].Cellphone);
 		id[i].Studentnum = atoi(idnum);
-		if (i != 0 && id[i].Studentnum == 0);
+		
+		if (i == 0);
 		else {
-			i++, maxnum++;
+			id[i].prev = &id[i - 1];
+			id[i].next = &id[i + 1];
 		}
+
 		if (feof(fp)) break;
-	}
-	id[maxnum + 1].Studentnum = 0;
-	id[maxnum + 1].next = NULL;
-	j = i; i = 0;
-	while (i<j){
-		id[i].prev = &id[i - 1];
-		id[i].next = &id[i + 1];
 		i++;
 	}
-	id[i - 1].next = NULL;
+	if (i > 0) {  // 입력데이터가 1이상 일 때 Linked List 구현
+		id[0].next = &id[1];
+		id[0].prev = NULL;
+		id[i].next = NULL;
+		id[i+1].Studentnum = 0;
+	}
+	
 	fclose(fp);
-	return maxnum;
 }
+
 int mainMenu(int *error)  // 메인메뉴 기능 (입력값: 에러값, 출력값: 유저 메뉴선택값)
 {
 	int choice;
@@ -130,13 +138,15 @@ int mainMenu(int *error)  // 메인메뉴 기능 (입력값: 에러값, 출력값: 유저 메뉴선�
 	}
 	return choice;
 }
-int inputMenu(void)   // 메뉴 선택값 입력
+
+int inputMenu(void)         // 메뉴 선택값 입력
 {
 	int choice;
 	gotoxy(54, 26);
 	choice = getche();
 	return choice;
 }
+
 int errorCheck(int check)   // 메뉴선택 시 에러 체크
 {
 	if (check < 49 || check > 55) return -1;
@@ -144,7 +154,7 @@ int errorCheck(int check)   // 메뉴선택 시 에러 체크
 	return 0;
 }
 
-void mainmenuUI(void)  // 메인메뉴 UI 출력
+void mainmenuUI(void)       // 메인메뉴 UI 출력
 {
 	system("cls");
 	gotoxy(0, 1);
