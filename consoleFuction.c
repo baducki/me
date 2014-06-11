@@ -67,7 +67,11 @@ void curtainEffect(void)
 	gotoxy(0, 20); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 21); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 22); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 23); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY * 7); textColor(7);
+	gotoxy(0, 23); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 24); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 25); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY * 7); textColor(7);
+	gotoxy(0, 25); lineClear(); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 24); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 23); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 22); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 21); lineClear(); Sleep(CURTAIN_DELAY);
@@ -319,4 +323,27 @@ void welcomeUI()
 	SetConsoleCursorPosition(hConsole, coordScreen);
 	Sleep(2100);
 	cursorOn();
+}
+
+int StringComp(char *msg1, char *msg2)
+{
+	int i, j;
+
+	for (i = 0, j = 0; i < (int)strlen(msg1); i+=2) {
+		if (i == 0){
+			if (msg1[i] == msg2[i] && msg1[i + 1] == msg2[i + 1]) j = 1;
+			else {
+				j = 0;
+				break;
+			}
+		}
+		if (i > 1 && j > 0){
+			if (msg1[i] == msg2[i] && msg1[i + 1] == msg2[i + 1]) j = 1;
+			else {
+				j = 0;
+				break;
+			}
+		}
+	}
+	return j;
 }

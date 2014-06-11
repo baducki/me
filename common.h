@@ -130,3 +130,4 @@ void lineClear(void);                    // 한 줄 메세지 제거
 void printfAllNodes(Member_t *head);     // Linked List를 이용해서 회원정보 출력
 void screenClearUp();                    // 화면 위로 이동
 void screenClearDelete();                // 화면 지우개로 지움
+int StringComp(char *msg1[], char *msg2);

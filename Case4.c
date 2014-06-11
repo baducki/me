@@ -231,7 +231,7 @@ int searchInfoName(Member_t *id, char *name)
 	for (i = 0; i < 50; i++) sameName[i] = 0;
 
 	for (i = 1, j = 0; id[i-1].next != NULL; i++){
-		if (!strcmp(name, id[i].Name)) {
+		if (StringComp(name, id[i].Name)) {
 			sameName[j] = i;
 			j++;
 		}
@@ -295,7 +295,9 @@ int printSameNameMember(Member_t *id, int *sameName, int j)
 	gotoxy(0, 20); printf("│                                                                      │");
 	gotoxy(0, 21); printf("│                                                                      │");
 	gotoxy(0, 22); printf("│                                                                      │");
-	gotoxy(0, 23); printf("└───────────────────────────────────┘");
+	gotoxy(0, 23); printf("│                                                                      │");
+	gotoxy(0, 24); printf("│                                                                      │");
+	gotoxy(0, 25); printf("└───────────────────────────────────┘");
 	textColor(7);
 	gotoxy(8, 14); printf(" < 검색결과 > ");
 	gotoxy(2, 16); printf("No  ID_NUM    NAME                ADDRESS                 CELL PHONE\n");
@@ -587,7 +589,7 @@ void adjustCell(int count)
  
  void adjustInfoInputAddress(Member_t *id, int i)
  {
- 	 cursorOff();
+	 cursorOff();
 	 textColor(16 * 10);
 	 gotoxy(0, 26); printf("          < 주소 수정이 완료 되었습니다 > 아무 키나 누르세요             ");
 	 textColor(7);
