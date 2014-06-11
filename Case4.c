@@ -136,13 +136,15 @@ int insertCellphone(int line, int row, char *cellphone, int menu)
 
 int searchInfoCellphone(Member_t *id, char *cellphone)
 {
-	int i;
+	int i, j;
 
-	for (i = 1; id[i].Studentnum != 0; i++){
-		if (!strcmp(cellphone, id[i].Cellphone)) break;
+	for (i = 1, j = 0; id[i-1].next != NULL; i++){
+		if (!strcmp(cellphone, id[i].Cellphone)) {
+			j++;
+			break;
+		}
 	}
-	if (id[i].Studentnum == 0) i = -1;
-	
+	if (j == 0) i = -1;
 	curtainEffect();
 	case4PrintInfo(id, i);
 
@@ -228,7 +230,7 @@ int searchInfoName(Member_t *id, char *name)
 	int sameName[50];
 	for (i = 0; i < 50; i++) sameName[i] = 0;
 
-	for (i = 1, j = 0; id[i].Studentnum != 0; i++){
+	for (i = 1, j = 0; id[i-1].next != NULL; i++){
 		if (!strcmp(name, id[i].Name)) {
 			sameName[j] = i;
 			j++;
@@ -239,6 +241,12 @@ int searchInfoName(Member_t *id, char *name)
 		case4PrintInfo(id, -1);
 		return -1;
 	}
+
+	else if (j == 1){
+		curtainEffect();
+		case4PrintInfo(id, sameName[j-1]);
+		return sameName[j-1];
+	}
 	else if (j > 1){
 		j = printSameNameMember(id, sameName, j);
 		j--;
@@ -246,7 +254,7 @@ int searchInfoName(Member_t *id, char *name)
 		case4PrintInfo(id, sameName[j]);
 		return sameName[j];
 	}
-	return 0;
+	return -1;
 }
 
 int insertName(int line, int row, char *name, int menu)

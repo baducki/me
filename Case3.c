@@ -67,8 +67,9 @@ int deleteInfo(Member_t *id, int i)
 			}
 		}
 		else if (choice == 89 || choice == 121) {
-			deleteLinkedList(id, i);
 			cursorOff();
+			deleteSearchInfoUI(id, i);
+			deleteLinkedList(id, i);
 			textColor(16 * 10);
 			gotoxy(0, 26); printf("           < 회원 정보가 삭제되었습니다 >   아무 키나 누르세요             ");
 			textColor(7);
@@ -140,15 +141,39 @@ void case3DeleteSearchOptionUI(void)  // 회원정보 수정 중 검색 옵션 UI
 	gotoxy(4, 12); printf("검색 옵션 선택【 】");
 }
 
+void deleteSearchInfoUI(Member_t *id, int i)
+{
+	textColor(16 * 14);
+	gotoxy(0, 0); printf("                             < 회원 정보 삭제 >                            ");
+	textColor(12 * 16);
+	gotoxy(8, 3);  printf("┌────────── < 회원정보 > ───────────┐");
+	gotoxy(8, 4);  printf("│                                                        │");
+	gotoxy(8, 5);  printf("│                                                        │");
+	gotoxy(8, 6);  printf("│                                                        │");
+	gotoxy(8, 7);  printf("│                                                        │");
+	gotoxy(8, 8);  printf("│                                                        │");
+	gotoxy(8, 9);  printf("│                                                        │");
+	gotoxy(8, 10); printf("│                                                        │");
+	gotoxy(8, 11); printf("│                                                        │");
+	gotoxy(8, 12); printf("│                                                        │");
+	gotoxy(8, 13); printf("└────────────────────────────┘");
+	gotoxy(12, 5);  printf("①     학번 : %d", id[i].Studentnum);
+	gotoxy(12, 7);  printf("②     이름 : %s", id[i].Name);
+	gotoxy(12, 9);  printf("③     주소 : %s", id[i].Address);
+	gotoxy(12, 11); printf("④ 전화번호 : %s", id[i].Cellphone);
+}
+
 void deleteCompleteUI(void)
 {
-	gotoxy(0, 14);  printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■"); 
-	gotoxy(0, 15);  printf("■□□□■■■□□□□□■□■■■■■□□□□□■□□□□□■□□□□□■"); 
-	gotoxy(0, 16);  printf("■□■■□■■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■"); 
-	gotoxy(0, 17);  printf("■□■■■□■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■");
-	gotoxy(0, 18);  printf("■□■■■□■□□□□□■□■■■■■□□□□□■■■□■■■□□□□□■");
-	gotoxy(0, 19);  printf("■□■■■□■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■");
-	gotoxy(0, 20);  printf("■□■■□■■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■");
-	gotoxy(0, 21);  printf("■□□□■■■□□□□□■□□□□□■□□□□□■■■□■■■□□□□□■");
-	gotoxy(0, 22);  printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+	textColor(12);
+	gotoxy(0, 15);  printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ "); 
+	gotoxy(0, 16);  printf("■□□□■■■□□□□□■□■■■■■□□□□□■□□□□□■□□□□□■ "); 
+	gotoxy(0, 17);  printf("■□■■□■■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■ "); 
+	gotoxy(0, 18);  printf("■□■■■□■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■ ");
+	gotoxy(0, 19);  printf("■□■■■□■□□□□□■□■■■■■□□□□□■■■□■■■□□□□□■ ");
+	gotoxy(0, 20);  printf("■□■■■□■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■ ");
+	gotoxy(0, 21);  printf("■□■■□■■□■■■■■□■■■■■□■■■■■■■□■■■□■■■■■ ");
+	gotoxy(0, 22);  printf("■□□□■■■□□□□□■□□□□□■□□□□□■■■□■■■□□□□□■ ");
+	gotoxy(0, 23);  printf("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ ");
+	textColor(7);
 }

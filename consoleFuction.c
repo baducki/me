@@ -43,31 +43,31 @@ void curtainEffect(void)
 	gotoxy(0, 26); lineClear();
 	gotoxy(0, 28); lineClear();
 	textColor(15);
-	gotoxy(0, 1);  printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 2);  printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 3);  printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 4);  printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 5);  printf("¡á¡á¡à¡à¡à¡á¡á¡à¡à¡à¡à¡á¡á¡à¡à¡à¡á¡á¡à¡à¡à¡à¡á¡á¡á¡á¡à¡à¡à¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 6);  printf("¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡à¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 7);  printf("¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 8);  printf("¡á¡á¡á¡à¡á¡á¡á¡à¡à¡à¡à¡á¡à¡à¡à¡à¡à¡á¡à¡á¡á¡à¡á¡á¡à¡á¡á¡á¡á¡á¡à¡à¡à¡à¡à¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 9);  printf("¡á¡á¡á¡á¡à¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡à¡à¡à¡á¡á¡á¡à¡á¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 10); printf("¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡à¡á¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 11); printf("¡á¡á¡à¡à¡à¡á¡á¡à¡à¡à¡à¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡à¡á¡á¡á¡à¡à¡à¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 12); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 13); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á");
+	gotoxy(0, 1);  printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 2);  printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 3);  printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 4);  printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 5);  printf(" ¡á¡á¡à¡à¡à¡á¡á¡à¡à¡à¡à¡á¡á¡à¡à¡à¡á¡á¡à¡à¡à¡à¡á¡á¡á¡á¡à¡à¡à¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 6);  printf(" ¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡à¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 7);  printf(" ¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 8);  printf(" ¡á¡á¡á¡à¡á¡á¡á¡à¡à¡à¡à¡á¡à¡à¡à¡à¡à¡á¡à¡á¡á¡à¡á¡á¡à¡á¡á¡á¡á¡á¡à¡à¡à¡à¡à¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 9);  printf(" ¡á¡á¡á¡á¡à¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡à¡à¡à¡á¡á¡á¡à¡á¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 10); printf(" ¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡à¡á¡á¡á¡à¡á¡á¡á¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 11); printf(" ¡á¡á¡à¡à¡à¡á¡á¡à¡à¡à¡à¡á¡à¡á¡á¡á¡à¡á¡à¡á¡á¡á¡à¡á¡á¡á¡à¡à¡à¡á¡à¡á¡á¡á¡à¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 12); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 13); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á");
 	textColor(10); printf("< °Ë »ö Áß >"); textColor(15);
 	printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 14); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 15); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 16); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 17); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 18); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 19); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 20); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 21); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 22); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 23); printf("¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY * 7); textColor(7);
+	gotoxy(0, 14); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 15); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 16); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 17); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 18); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 19); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 20); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 21); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 22); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 23); printf(" ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á"); Sleep(CURTAIN_DELAY * 7); textColor(7);
 	gotoxy(0, 23); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 22); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 21); lineClear(); Sleep(CURTAIN_DELAY);
@@ -148,7 +148,54 @@ void screenClearDelete()
 	dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
 	cursorOff();
 	int i, j;
-	for (i = 0; i <= csbi.dwSize.X + 31; i++)
+	for (i = 7; i <= csbi.dwSize.X; i += 21)
+	{
+		coordScreen.Y = i; Sleep(14);
+		for (j = 0; j <= i; j++)
+		{
+			coordScreen.X = j;
+			coordScreen.Y--;
+			SetConsoleCursorPosition(hConsole, coordScreen);
+			printf(" ");
+		}
+	}
+	for (i = 2; i <= csbi.dwSize.X; i += 27)
+	{
+		coordScreen.Y = i; Sleep(14);
+		for (j = 0; j <= i; j++)
+		{
+			coordScreen.X = j;
+			coordScreen.Y--;
+			SetConsoleCursorPosition(hConsole, coordScreen);
+			printf(" ");
+		}
+	}
+
+	for (i = 3; i <= csbi.dwSize.X; i += 20)
+	{
+		coordScreen.Y = i; Sleep(14);
+		for (j = 0; j <= i; j++)
+		{
+			coordScreen.X = j;
+			coordScreen.Y--;
+			SetConsoleCursorPosition(hConsole, coordScreen);
+			printf(" ");
+		}
+	}
+
+	for (i = 1; i <= csbi.dwSize.X; i += 11)
+	{
+		coordScreen.Y = i; Sleep(14);
+		for (j = 0; j <= i; j++)
+		{
+			coordScreen.X = j;
+			coordScreen.Y--;
+			SetConsoleCursorPosition(hConsole, coordScreen);
+			printf(" ");
+		}
+	}
+
+	for (i = 0; i <= csbi.dwSize.X + 28; i += 7)
 	{
 		coordScreen.Y = i;
 		for (j = 0; j <= i; j++)

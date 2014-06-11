@@ -115,12 +115,12 @@ void inputNewMember(FILE *fp, Member_t *id)   // 새로운 회원 정보를 입력
 	repeatCellphoneErrorOff();
 	valid = inputMemberSave();
 	cursorOff();
+
 	if (valid == 0){
 		id[maxnum].Studentnum = 0;
 		id[maxnum].Name;
 		id[maxnum].Address;
 		id[maxnum].Cellphone;
-		j = 0;
 		textColor(16 * 10);
 		gotoxy(0, 26); printf("                 < 회원 등록이 취소 되었습니다 >   아무키나 누르세요       ");
 		textColor(7);
@@ -130,21 +130,19 @@ void inputNewMember(FILE *fp, Member_t *id)   // 새로운 회원 정보를 입력
 		id[maxnum - 1].next = &id[maxnum];
 		id[maxnum].prev = &id[maxnum - 1];
 		id[maxnum].next = NULL;
-		j = 1;
 		closeCase2();
 	}
 	cursorOn();
-	id[maxnum + 1].Studentnum = 0;
 }
 
 void findMaxStudentNum(Member_t *id, int *maxnum, int *maxstudentnum)   // 현재 저장된 학생들 중 가장 큰 학번 검색
 {
 	int i;
-	for (i = 2; id[i].next != NULL; i++){
+	for (i = 2; id[i-1].next != NULL; i++){
 		if (id[i - 1].Studentnum < id[i].Studentnum)
 			*maxstudentnum = id[i].Studentnum;
 	}
-	*maxnum = i + 1;
+	*maxnum = i;
 }
 
 int validName(char *str, int key)   // 이름에 한글 외 입력 금지

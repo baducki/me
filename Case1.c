@@ -3,6 +3,7 @@
 // 1. 회원 보기 함수
 void headOfCase1(void)   // 회원 보기 헤드양식 출력
 {
+	system("cls");
 	gotoxy(0, 0);
 	textColor(16 * 14);
 	cursorOff();
@@ -32,7 +33,7 @@ void printInfo(Member_t *id)   // 구조체에 있는 회원정보를 출력
 		gotoxy(14, j + 3); printf("%.8s", printmember->next->Name);
 		gotoxy(24, j + 3); printf("%.30s", printmember->next->Address);
 		gotoxy(59, j + 3); printf("%.14s", printmember->next->Cellphone);
-		
+
 		printmember->next = printmember->next->next;
 
 		if (printmember->next != NULL){

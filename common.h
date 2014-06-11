@@ -78,8 +78,8 @@ void deleteMemberInfo(Member_t *id);                         // 3. È¸¿ø »èÁ¦ ½ÇÇ
 void case3DeleteSearchOptionUI(void);                        // È¸¿øÁ¤º¸ »èÁ¦ Áß °Ë»ö ¿É¼Ç UI
 int deleteInfo(Member_t *id, int i);                         // È¸¿ø »èÁ¦
 void deleteLinkedList(Member_t *id, int i);                  // È¸¿ø Linked List »èÁ¦
-void deleteCompleteUI(void);                                 // Delete UI
-
+void deleteCompleteUI(void);                                 // È¸¿ø »èÁ¦ UI
+void deleteSearchInfoUI(Member_t *id, int i);                // È¸¿ø »èÁ¦ Áß È¸¿ø °Ë»ö UI
 
 // 4. È¸¿ø Á¤º¸ ¼öÁ¤ ÇÔ¼ö
 void adjustMemberInfo(Member_t *id);          // 4. È¸¿ø Á¤º¸ ¼öÁ¤ ½ÇÇà
