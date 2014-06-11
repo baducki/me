@@ -1,8 +1,8 @@
 #include "common.h"
 
-// ▒т┤╔ ╟╘╝Ў
+// я┐╜я┐╜я┐╜я┐╜ я┐╜╘╝я┐╜
 
-void gotoxy(int x, int y)   // └╘╖┬ ─┐╝н └з─б ┴╢┴д
+void gotoxy(int x, int y)   // я┐╜╘╖я┐╜ ─┐я┐╜я┐╜ я┐╜я┐╜─б я┐╜я┐╜я┐╜я┐╜
 {
 	COORD Cur;
 	Cur.X = x;
@@ -10,7 +10,7 @@ void gotoxy(int x, int y)   // └╘╖┬ ─┐╝н └з─б ┴╢┴д
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
 }
 
-void cursorOn(void)              // ─┐╝н ─╤▒т
+void cursorOn(void)              // ─┐я┐╜я┐╜ я┐╜╤▒я┐╜
 {
 	CONSOLE_CURSOR_INFO CurInfo;
 	CurInfo.dwSize = 1;
@@ -20,21 +20,21 @@ void cursorOn(void)              // ─┐╝н ─╤▒т
 
 void cursorOff(void)
 {
-	CONSOLE_CURSOR_INFO CurInfo; // ─┐╝н ▓Ї▒т
+	CONSOLE_CURSOR_INFO CurInfo; // ─┐я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜
 	CurInfo.dwSize = 1;
 	CurInfo.bVisible = FALSE;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &CurInfo);
 }
 
-void textColor(int color)  // ▒█└┌╗Ў ║п░ц
+void textColor(int color)  // я┐╜я┐╜я┐╜┌╗я┐╜ я┐╜я┐╜я┐╜я┐╜
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
 
-void warningYesOrNo(void)  // Yes ╚д└║ No╕ж ┤й╕г╝╝┐ф Error ╕▐╝╝┴Ў 
+void warningYesOrNo(void)  // Yes ╚дя┐╜я┐╜ Noя┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ Error я┐╜▐╝я┐╜я┐╜я┐╜ 
 {
 	textColor(12 * 16);
-	gotoxy(0, 28); printf("                  Warning: Y(┐╣) ╚д└║ N(╛╞┤╧┐ф) ┼░╕ж └╘╖┬╟╧╝╝┐ф            ");
+	gotoxy(0, 28); printf("                  Warning: Y(я┐╜я┐╜) ╚дя┐╜я┐╜ N(я┐╜╞┤╧┐я┐╜) ┼░я┐╜я┐╜ я┐╜╘╖я┐╜я┐╜╧╝я┐╜я┐╜я┐╜            ");
 	textColor(16 * 14);
 }
 
@@ -43,33 +43,33 @@ void curtainEffect(void)
 	gotoxy(0, 26); lineClear();
 	gotoxy(0, 28); lineClear();
 	textColor(15);
-	gotoxy(0, 1);  printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 2);  printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 3);  printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 4);  printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 5);  printf(" бсбсбрбрбрбсбсбрбрбрбрбсбсбрбрбрбсбсбрбрбрбрбсбсбсбсбрбрбрбсбрбсбсбсбрбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 6);  printf(" бсбрбсбсбсбрбсбрбсбсбсбсбрбсбсбсбрбсбрбсбсбсбрбсбсбрбсбсбсбсбрбсбсбсбрбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 7);  printf(" бсбсбрбсбсбсбсбрбсбсбсбсбрбсбсбсбрбсбрбсбсбсбрбсбрбсбсбсбсбсбрбсбсбсбрбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 8);  printf(" бсбсбсбрбсбсбсбрбрбрбрбсбрбрбрбрбрбсбрбсбсбрбсбсбрбсбсбсбсбсбрбрбрбрбрбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 9);  printf(" бсбсбсбсбрбсбсбрбсбсбсбсбрбсбсбсбрбсбрбрбрбсбсбсбрбсбсбсбсбсбрбсбсбсбрбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 10); printf(" бсбрбсбсбсбрбсбрбсбсбсбсбрбсбсбсбрбсбрбсбсбрбсбсбсбрбсбсбсбсбрбсбсбсбрбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 11); printf(" бсбсбрбрбрбсбсбрбрбрбрбсбрбсбсбсбрбсбрбсбсбсбрбсбсбсбрбрбрбсбрбсбсбсбрбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 12); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 13); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс");
-	textColor(10); printf("< ░╦ ╗Ў ┴▀ >"); textColor(15);
-	printf("бсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 14); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 15); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 16); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 17); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 18); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 19); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 20); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 21); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 22); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 23); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 24); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY);
-	gotoxy(0, 25); printf(" бсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбсбс"); Sleep(CURTAIN_DELAY * 7); textColor(7);
+	gotoxy(0, 1);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 2);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 3);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 4);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 5);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 6);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 7);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 8);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 9);  printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 10); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 11); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 12); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 13); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜");
+	textColor(10); printf("< я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜ >"); textColor(15);
+	printf("я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 14); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 15); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 16); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 17); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 18); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 19); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 20); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 21); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 22); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 23); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 24); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY);
+	gotoxy(0, 25); printf(" я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜"); Sleep(CURTAIN_DELAY * 7); textColor(7);
 	gotoxy(0, 25); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 24); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 23); lineClear(); Sleep(CURTAIN_DELAY);
@@ -83,27 +83,27 @@ void curtainEffect(void)
 	gotoxy(0, 15); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 14); lineClear(); Sleep(CURTAIN_DELAY);
 	gotoxy(0, 13); lineClear(); Sleep(CURTAIN_DELAY);
-	gotoxy(8, 13); printf("жжжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбжбже");
+	gotoxy(8, 13); printf("я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜");
 	gotoxy(0, 12); lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 12); printf("жв                                                        жв");
+	gotoxy(8, 12); printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 11); lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 11); printf("жв                                                        жв");
+	gotoxy(8, 11); printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 10); lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 10); printf("жв                                                        жв");
+	gotoxy(8, 10); printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 9);  lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 9);  printf("жв                                                        жв");
+	gotoxy(8, 9);  printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 8);  lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 8);  printf("жв                                                        жв");
+	gotoxy(8, 8);  printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 7);  lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 7);  printf("жв                                                        жв");
+	gotoxy(8, 7);  printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 6);  lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 6);  printf("жв                                                        жв");
+	gotoxy(8, 6);  printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 5);  lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 5);  printf("жв                                                        жв");
+	gotoxy(8, 5);  printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 4);  lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 4);  printf("жв                                                        жв");
+	gotoxy(8, 4);  printf("я┐╜я┐╜                                                        я┐╜я┐╜");
 	gotoxy(0, 3);  lineClear(); Sleep(CURTAIN_DELAY - 10);
-	gotoxy(8, 3);  printf("жгжбжбжбжбжбжбжбжбжбжб < ╚╕┐°┴д║╕ > жбжбжбжбжбжбжбжбжбжбжбжд");
+	gotoxy(8, 3);  printf("я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ < ╚╕я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ > я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜");
 	gotoxy(0, 2);  lineClear(); Sleep(CURTAIN_DELAY - 10);
 	gotoxy(0, 1);  lineClear(); Sleep(CURTAIN_DELAY - 10);
 }
@@ -113,7 +113,7 @@ void lineClear(void)
 	printf("                                                                           ");
 }
 
-void printfAllNodes(Member_t *head) // Linked List╕ж └╠┐ы╟╪╝н ╚╕┐°┴д║╕ ├т╖┬
+void printfAllNodes(Member_t *head) // Linked Listя┐╜я┐╜ я┐╜╠┐я┐╜я┐╜╪╝я┐╜ ╚╕я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜
 {
 	Member_t *curNode;
 	curNode = head->next;
@@ -236,38 +236,38 @@ void welcomeUI()
 			coordScreen.X = j;
 			coordScreen.Y--;
 			SetConsoleCursorPosition(hConsole, coordScreen);
-			if (coordScreen.X == 1 + x && coordScreen.Y == 1 + y) printf("жг");
-			else if (coordScreen.X == 3 + x && coordScreen.Y == 1 + y)  printf("жб");
-			else if (coordScreen.X == 5 + x && coordScreen.Y == 1 + y)  printf("жб");
-			else if (coordScreen.X == 7 + x && coordScreen.Y == 1 + y)  printf("жб");
-			else if (coordScreen.X == 9 + x && coordScreen.Y == 1 + y)  printf("жб");
-			else if (coordScreen.X == 11 + x && coordScreen.Y == 1 + y) printf("жб");
-			else if (coordScreen.X == 13 + x && coordScreen.Y == 1 + y) printf("жб");
-			else if (coordScreen.X == 15 + x && coordScreen.Y == 1 + y) printf("жб");
-			else if (coordScreen.X == 17 + x && coordScreen.Y == 1 + y) printf("жб");
-			else if (coordScreen.X == 19 + x && coordScreen.Y == 1 + y) printf("жб");
-			else if (coordScreen.X == 21 + x && coordScreen.Y == 1 + y) printf("жб");
-			else if (coordScreen.X == 23 + x && coordScreen.Y == 1 + y) printf("жб");
-			else if (coordScreen.X == 25 + x && coordScreen.Y == 1 + y) printf("жб");
-			else if (coordScreen.X == 27 + x && coordScreen.Y == 1 + y) printf("жд");
-			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 2 + y) printf("жв");
-			else if (coordScreen.X == 27 + x && coordScreen.Y == 2 + y) printf("жв");
-			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 3 + y) printf("жв");
-			else if (coordScreen.X == 27 + x && coordScreen.Y == 3 + y) printf("жв");
-			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 4 + y) printf("жж");
-			else if (coordScreen.X == 3 + x &&  coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 5 + x &&  coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 7 + x &&  coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 9 + x &&  coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 11 + x && coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 13 + x && coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 15 + x && coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 17 + x && coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 19 + x && coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 21 + x && coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 23 + x && coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 25 + x && coordScreen.Y == 4 + y) printf("жб");
-			else if (coordScreen.X == 27 + x && coordScreen.Y == 4 + y) printf("же");
+			if (coordScreen.X == 1 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 3 + x && coordScreen.Y == 1 + y)  printf("я┐╜я┐╜");
+			else if (coordScreen.X == 5 + x && coordScreen.Y == 1 + y)  printf("я┐╜я┐╜");
+			else if (coordScreen.X == 7 + x && coordScreen.Y == 1 + y)  printf("я┐╜я┐╜");
+			else if (coordScreen.X == 9 + x && coordScreen.Y == 1 + y)  printf("я┐╜я┐╜");
+			else if (coordScreen.X == 11 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 13 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 15 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 17 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 19 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 21 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 23 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 25 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 27 + x && coordScreen.Y == 1 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 2 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 27 + x && coordScreen.Y == 2 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 3 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 27 + x && coordScreen.Y == 3 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 3 + x &&  coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 5 + x &&  coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 7 + x &&  coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 9 + x &&  coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 11 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 13 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 15 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 17 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 19 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 21 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 23 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 25 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
+			else if (coordScreen.X == 27 + x && coordScreen.Y == 4 + y) printf("я┐╜я┐╜");
 		}
 	}
 
@@ -321,7 +321,33 @@ void welcomeUI()
 	}
 
 	SetConsoleCursorPosition(hConsole, coordScreen);
-	Sleep(2100);
+	Sleep(1400);
+	textColor(15); Sleep(77);
+	gotoxy(24,12);   printf("тФМтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФР");
+	gotoxy(24,13); printf("тФВ NHN INSTITUTE FOR THE  тФВ");
+	gotoxy(24,14); printf("тФВ NEXT NETWORK           тФВ");
+	gotoxy(24,15); printf("тФФтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФШ");
+	textColor(7);  Sleep(77);
+	gotoxy(24,12);   printf("тФМтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФР");
+	gotoxy(24,13); printf("тФВ NHN INSTITUTE FOR THE  тФВ");
+	gotoxy(24,14); printf("тФВ NEXT NETWORK           тФВ");
+	gotoxy(24,15); printf("тФФтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФШ");
+	textColor(8);  Sleep(77);
+	gotoxy(24,12);   printf("тФМтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФР");
+	gotoxy(24,13); printf("тФВ NHN INSTITUTE FOR THE  тФВ");
+	gotoxy(24,14); printf("тФВ NEXT NETWORK           тФВ");
+	gotoxy(24,15); printf("тФФтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФШ");
+	textColor(0);  Sleep(77);
+	gotoxy(24,12);   printf("тФМтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФР");
+	gotoxy(24,13); printf("тФВ NHN INSTITUTE FOR THE  тФВ");
+	gotoxy(24,14); printf("тФВ NEXT NETWORK           тФВ");
+	gotoxy(24,15); printf("тФФтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФАтФШ");
+	Sleep(77);
+	gotoxy(14,12);   printf("								      ");
+	gotoxy(14,13); printf("                                      ");
+	gotoxy(14,14); printf("                                      ");
+	gotoxy(14,15); printf("                                      ");
+	Sleep(100);
 	cursorOn();
 }
 
