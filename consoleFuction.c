@@ -225,14 +225,14 @@ void welcomeUI()
 	textColor(15);
 	for (i = 0; i <= csbi.dwSize.X-9; i++)
 	{
+		Sleep(21);
 		coordScreen.Y = i;
 		for (j = 0; j <= i; j++)
 		{
-			Sleep(1);
 			coordScreen.X = j;
 			coordScreen.Y--;
 			SetConsoleCursorPosition(hConsole, coordScreen);
-			if (coordScreen.X == 1 + x && coordScreen.Y == 1+ y) printf("¦£");
+			if (coordScreen.X == 1 + x && coordScreen.Y == 1 + y) printf("¦£");
 			else if (coordScreen.X == 3 + x && coordScreen.Y == 1 + y)  printf("¦¡");
 			else if (coordScreen.X == 5 + x && coordScreen.Y == 1 + y)  printf("¦¡");
 			else if (coordScreen.X == 7 + x && coordScreen.Y == 1 + y)  printf("¦¡");
@@ -269,10 +269,10 @@ void welcomeUI()
 
 	for (i = 0; i <= csbi.dwSize.X-9; i++)
 	{
+		Sleep(21);
 		coordScreen.Y = i;
 		for (j = 0; j <= i; j++)
 		{
-			Sleep(1);
 			coordScreen.X = j;
 			coordScreen.Y--;
 			SetConsoleCursorPosition(hConsole, coordScreen);
@@ -315,7 +315,8 @@ void welcomeUI()
 			else if (coordScreen.X == 15 + x && coordScreen.Y == 3 + y) printf("K");
 		}
 	}
+
 	SetConsoleCursorPosition(hConsole, coordScreen);
-	Sleep(270);
+	Sleep(2100);
 	cursorOn();
 }
