@@ -195,7 +195,7 @@ void screenClearDelete()
 		}
 	}
 
-	for (i = 0; i <= csbi.dwSize.X + 28; i += 7)
+	for (i = 0; i <= csbi.dwSize.X + 28; i++)
 	{
 		coordScreen.Y = i;
 		for (j = 0; j <= i; j++)
@@ -207,5 +207,115 @@ void screenClearDelete()
 		}
 	}
 	SetConsoleCursorPosition(hConsole, coordScreen);
+	cursorOn();
+}
+
+void welcomeUI()
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD coordScreen = { 0, 0 };    // home for the cursor 
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	DWORD dwConSize;
+
+	GetConsoleScreenBufferInfo(hConsole, &csbi);
+	dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+	cursorOff();
+	int i, j, x = 23, y = 11;
+
+	textColor(15);
+	for (i = 0; i <= csbi.dwSize.X-9; i++)
+	{
+		coordScreen.Y = i;
+		for (j = 0; j <= i; j++)
+		{
+			Sleep(1);
+			coordScreen.X = j;
+			coordScreen.Y--;
+			SetConsoleCursorPosition(hConsole, coordScreen);
+			if (coordScreen.X == 1 + x && coordScreen.Y == 1+ y) printf("忙");
+			else if (coordScreen.X == 3 + x && coordScreen.Y == 1 + y)  printf("式");
+			else if (coordScreen.X == 5 + x && coordScreen.Y == 1 + y)  printf("式");
+			else if (coordScreen.X == 7 + x && coordScreen.Y == 1 + y)  printf("式");
+			else if (coordScreen.X == 9 + x && coordScreen.Y == 1 + y)  printf("式");
+			else if (coordScreen.X == 11 + x && coordScreen.Y == 1 + y) printf("式");
+			else if (coordScreen.X == 13 + x && coordScreen.Y == 1 + y) printf("式");
+			else if (coordScreen.X == 15 + x && coordScreen.Y == 1 + y) printf("式");
+			else if (coordScreen.X == 17 + x && coordScreen.Y == 1 + y) printf("式");
+			else if (coordScreen.X == 19 + x && coordScreen.Y == 1 + y) printf("式");
+			else if (coordScreen.X == 21 + x && coordScreen.Y == 1 + y) printf("式");
+			else if (coordScreen.X == 23 + x && coordScreen.Y == 1 + y) printf("式");
+			else if (coordScreen.X == 25 + x && coordScreen.Y == 1 + y) printf("式");
+			else if (coordScreen.X == 27 + x && coordScreen.Y == 1 + y) printf("忖");
+			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 2 + y) printf("弛");
+			else if (coordScreen.X == 27 + x && coordScreen.Y == 2 + y) printf("弛");
+			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 3 + y) printf("弛");
+			else if (coordScreen.X == 27 + x && coordScreen.Y == 3 + y) printf("弛");
+			else if (coordScreen.X == 1 + x &&  coordScreen.Y == 4 + y) printf("戌");
+			else if (coordScreen.X == 3 + x &&  coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 5 + x &&  coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 7 + x &&  coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 9 + x &&  coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 11 + x && coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 13 + x && coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 15 + x && coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 17 + x && coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 19 + x && coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 21 + x && coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 23 + x && coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 25 + x && coordScreen.Y == 4 + y) printf("式");
+			else if (coordScreen.X == 27 + x && coordScreen.Y == 4 + y) printf("戎");
+		}
+	}
+
+	for (i = 0; i <= csbi.dwSize.X-9; i++)
+	{
+		coordScreen.Y = i;
+		for (j = 0; j <= i; j++)
+		{
+			Sleep(1);
+			coordScreen.X = j;
+			coordScreen.Y--;
+			SetConsoleCursorPosition(hConsole, coordScreen);
+			if (coordScreen.X == 4 + x &&  coordScreen.Y == 2 + y) printf("N");
+			else if (coordScreen.X == 5 + x &&  coordScreen.Y == 2 + y) printf("H");
+			else if (coordScreen.X == 6 + x &&  coordScreen.Y == 2 + y) printf("N");
+			else if (coordScreen.X == 8 + x &&  coordScreen.Y == 2 + y) printf("I");
+			else if (coordScreen.X == 9 + x &&  coordScreen.Y == 2 + y) printf("N");
+			else if (coordScreen.X == 10 + x && coordScreen.Y == 2 + y) printf("S");
+			else if (coordScreen.X == 11 + x && coordScreen.Y == 2 + y) printf("T");
+			else if (coordScreen.X == 12 + x && coordScreen.Y == 2 + y) printf("I");
+			else if (coordScreen.X == 13 + x && coordScreen.Y == 2 + y) printf("T");
+			else if (coordScreen.X == 14 + x && coordScreen.Y == 2 + y) printf("U");
+			else if (coordScreen.X == 15 + x && coordScreen.Y == 2 + y) printf("T");
+			else if (coordScreen.X == 16 + x && coordScreen.Y == 2 + y) printf("E");
+			else if (coordScreen.X == 18 + x && coordScreen.Y == 2 + y) printf("F");
+			else if (coordScreen.X == 19 + x && coordScreen.Y == 2 + y) printf("O");
+			else if (coordScreen.X == 20 + x && coordScreen.Y == 2 + y) printf("R");
+			else if (coordScreen.X == 22 + x && coordScreen.Y == 2 + y) printf("T");
+			else if (coordScreen.X == 23 + x && coordScreen.Y == 2 + y) printf("H");
+			else if (coordScreen.X == 24 + x && coordScreen.Y == 2 + y) printf("E");
+			else if (coordScreen.X == 4 + x &&  coordScreen.Y == 3 + y) {
+				textColor(8); printf("N"); textColor(15);
+			}
+			else if (coordScreen.X == 5 + x &&  coordScreen.Y == 3 + y){
+				textColor(8); printf("E"); textColor(15);
+			}
+			else if (coordScreen.X == 6 + x &&  coordScreen.Y == 3 + y) {
+				textColor(8); printf("X"); textColor(15);
+			}
+			else if (coordScreen.X == 7 + x &&  coordScreen.Y == 3 + y) {
+				textColor(8); printf("T"); textColor(15);
+			}
+			else if (coordScreen.X == 9 + x &&  coordScreen.Y == 3 + y) printf("N");
+			else if (coordScreen.X == 10 + x && coordScreen.Y == 3 + y) printf("E");
+			else if (coordScreen.X == 11 + x && coordScreen.Y == 3 + y) printf("T");
+			else if (coordScreen.X == 12 + x && coordScreen.Y == 3 + y) printf("W");
+			else if (coordScreen.X == 13 + x && coordScreen.Y == 3 + y) printf("O");
+			else if (coordScreen.X == 14 + x && coordScreen.Y == 3 + y) printf("R");
+			else if (coordScreen.X == 15 + x && coordScreen.Y == 3 + y) printf("K");
+		}
+	}
+	SetConsoleCursorPosition(hConsole, coordScreen);
+	Sleep(270);
 	cursorOn();
 }

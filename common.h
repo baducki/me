@@ -40,6 +40,7 @@ int mainMenu(int* error);               // 메인메뉴 기능 (입력값: 에러값, 출력값
 int inputMenu(void);                    // 메뉴 선택값 입력
 int errorCheck(int check);              // 메뉴선택 시 에러 체크
 void mainmenuUI(void);                  // 메인메뉴 UI
+void welcomeUI();                       // 시작 화면 UI
 
 // 1. 회원 보기 함수
 void headOfCase1(void);                  // 회원 보기 헤드양식 출력

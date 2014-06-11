@@ -7,6 +7,7 @@ int main(void)
 {
 	SetConsoleTitleA("  회원 관리 프로그램 made by YG & KYUNG");
 	system("mode con lines=30 cols=75");  // 윈도우 창 화면 크기를 고정
+	welcomeUI();
 	FILE *fp = NULL;
 	Member_t id[NUM_OF_MEMBERS];
 
