@@ -216,6 +216,8 @@ void screenClearDelete()
 
 void welcomeUI()
 {
+	int i, j, x = 23, y = 11;
+
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD coordScreen = { 0, 0 };    // home for the cursor 
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -224,7 +226,6 @@ void welcomeUI()
 	GetConsoleScreenBufferInfo(hConsole, &csbi);
 	dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
 	cursorOff();
-	int i, j, x = 23, y = 11;
 
 	textColor(15);
 	for (i = 0; i <= csbi.dwSize.X-9; i++)
@@ -344,28 +345,90 @@ void welcomeUI()
 	gotoxy(24, 15); printf("└────────────┘");
 	Sleep(TIME_OF_DELAY);
 	Sleep(100);
-	cursorOn();
-}
+	system("cls");
+	textColor(7);
+	gotoxy(0, 6);
+	printf("                      ┌─── < 주요기능 > ───┐\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      │                          │\n");
+	printf("                      └─────────────┘\n");
+	textColor(15);
+	gotoxy(30, 8);  printf("①  회원 보기");
+	gotoxy(30, 10); printf("②  회원 등록");
+	gotoxy(30, 12); printf("③  회원 삭제");
+	gotoxy(30, 14); printf("④  회원 수정");
+	gotoxy(30, 16); printf("⑤  회원 검색");
+	gotoxy(30, 18); printf("⑥  파일 저장");
+	gotoxy(30, 20); printf("⑦  종 료");
+	Sleep(TIME_OF_DELAY);
 
-int StringComp(char *msg1, char *msg2)
-{
-	int i, j;
+	gotoxy(25, 1); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(25, 1); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(25, 1); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(25, 1); textColor(15); printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(25, 1); textColor(12); printf("■"); Sleep(TIME_OF_DELAY);
 
-	for (i = 0, j = 0; i < (int)strlen(msg1); i+=2) {
-		if (i == 0){
-			if (msg1[i] == msg2[i] && msg1[i + 1] == msg2[i + 1]) j = 1;
-			else {
-				j = 0;
-				break;
-			}
-		}
-		if (i > 1 && j > 0){
-			if (msg1[i] == msg2[i] && msg1[i + 1] == msg2[i + 1]) j = 1;
-			else {
-				j = 0;
-				break;
-			}
+	gotoxy(27, 1); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(27, 1); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(27, 1); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(27, 1); textColor(15); printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(27, 1); textColor(10); printf("■"); Sleep(TIME_OF_DELAY);
+
+	gotoxy(25, 2); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(25, 2); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(25, 2); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(25, 2); textColor(15); printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(25, 2); textColor(14); printf("■"); Sleep(TIME_OF_DELAY);
+
+
+	gotoxy(29, 2); textColor(0); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
+	gotoxy(29, 2); textColor(8); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
+	gotoxy(29, 2); textColor(7); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
+	gotoxy(29, 2); textColor(15); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
+	textColor(8);
+	for (i = 0; i <= 32; i++){
+		gotoxy(i, 4);  printf("made by YG & Kyung"); Sleep(17);
+		if (i != 32){
+			gotoxy(i, 4);  printf("                  ");
 		}
 	}
-	return j;
+
+	textColor(16 * 14);
+	gotoxy(0, 26); printf("\t\t     원하는 기능의 번호를 입력하세요【 】                  ");
+	textColor(7);
+
+}
+
+int stringComp(char *msg1, char *msg2)
+{
+	unsigned int i = 0, j = 0, check = 0;
+
+	while(1) {
+		if (msg1[j] == msg2[i] && msg1[j + 1] == msg2[i + 1]){
+			i += 2;
+			j += 2;
+			check++;
+		}
+		else {
+			i += 2;
+			check = 0;
+		}
+		if (j != (int)strlen(msg1) && i == (int)strlen(msg2)) check = 0;
+
+		if (j == (int)strlen(msg1) || i == (int)strlen(msg2)) break;
+	}
+	return check;
 }

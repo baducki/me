@@ -82,7 +82,7 @@ int deleteInfo(Member_t *id, int i)
 		else if (choice == 78 || choice == 110){
 			cursorOff();
 			textColor(16 * 10);
-			gotoxy(0, 26); printf("        < 회원 정보 삭제가 취소되었습니다 >    아무 키나 누르세요           ");
+			gotoxy(0, 26); printf("        < 회원 정보 삭제가 취소되었습니다 >    아무 키나 누르세요          ");
 			textColor(7);
 			getch();
 			cursorOn();

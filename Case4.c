@@ -231,7 +231,7 @@ int searchInfoName(Member_t *id, char *name)
 	for (i = 0; i < 50; i++) sameName[i] = 0;
 
 	for (i = 1, j = 0; id[i-1].next != NULL; i++){
-		if (StringComp(name, id[i].Name)) {
+		if (stringComp(name, id[i].Name)) {
 			sameName[j] = i;
 			j++;
 		}
