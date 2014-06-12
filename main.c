@@ -157,14 +157,10 @@ int errorCheck(int check)   // 메뉴선택 시 에러 체크
 
 void mainmenuUI(void)       // 메인메뉴 UI 출력
 {
+	int i;
 	system("cls");
-	gotoxy(0, 1);
-	printf("                         ┌──────────┐\n");
-	printf("                         │ 회원 관리 프로그램 │\n");
-	printf("                         └──────────┘ \n");
-	textColor(8);
-	printf("                              made by YG & Kyung\n\n");
 	textColor(7);
+	gotoxy(0, 6);
 	printf("                      ┌─── < 주요기능 > ───┐\n");
 	printf("                      │                          │\n");
 	printf("                      │                          │\n");
@@ -190,6 +186,39 @@ void mainmenuUI(void)       // 메인메뉴 UI 출력
 	gotoxy(30, 16); printf("⑤  회원 검색");
 	gotoxy(30, 18); printf("⑥  파일 저장");
 	gotoxy(30, 20); printf("⑦  종 료");
+	Sleep(TIME_OF_DELAY);
+
+	gotoxy(26, 1); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(26, 1); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(26, 1); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(26, 1); textColor(15); printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(26, 1); textColor(12); printf("■"); Sleep(TIME_OF_DELAY);
+
+	gotoxy(28, 1); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(28, 1); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(28, 1); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(28, 1); textColor(15); printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(28, 1); textColor(10); printf("■"); Sleep(TIME_OF_DELAY);
+
+	gotoxy(26, 2); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(26, 2); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(26, 2); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(26, 2); textColor(15); printf("■"); Sleep(TIME_OF_DELAY);
+	gotoxy(26, 2); textColor(14); printf("■"); Sleep(TIME_OF_DELAY);
+
+	
+	gotoxy(29, 2); textColor(0); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
+	gotoxy(29, 2); textColor(8); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
+	gotoxy(29, 2); textColor(7); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
+	gotoxy(29, 2); textColor(15); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
+	textColor(8);
+	for (i = 0; i <= 32; i++){
+		gotoxy(i, 4);  printf("made by YG & Kyung"); Sleep(17);
+		if (i != 32){
+			gotoxy(i, 4);  printf("                  ");
+		}
+	}
+	
 	textColor(16 * 14);
 	gotoxy(0, 26); printf("\t\t     원하는 기능의 번호를 입력하세요【 】                  ");
 	textColor(7);
