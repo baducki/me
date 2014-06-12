@@ -99,6 +99,7 @@ int deleteInfo(Member_t *id, int i)
 
 void deleteLinkedList(Member_t *id, int i)
 {
+	int j;
 	Member_t *temp = (Member_t*)malloc(sizeof(Member_t));
 
 	temp->prev = id[i].prev;
@@ -111,8 +112,10 @@ void deleteLinkedList(Member_t *id, int i)
 	else id[i].prev->next = NULL;
 
 	id[i].Address[0] = '\0';
-	id[i].Cellphone[0] = '\0';
-	id[i].Name[0] = '\0';
+	for (j = 0; j < CELLPHONE_MAXCHAR-1; j++) id[i].Cellphone[j] = ' ';
+	id[i].Cellphone[j] = '\0';
+	for (j = 0; j < NAME_MAXCHAR-1; j++) id[i].Name[j] = ' ';
+	id[i].Name[j] = '\0';
 	id[i].Studentnum = 0;
 
 	free(temp);

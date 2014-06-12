@@ -6,7 +6,9 @@
 #include <conio.h>
 #include <Windows.h>
 #include <time.h>
+#include <mmsystem.h>
 
+#pragma comment (lib ,"winmm.lib")
 #pragma warning (disable:4996)
 
 // 회원관리 프로그램 Define

@@ -228,9 +228,9 @@ void welcomeUI()
 	cursorOff();
 
 	textColor(15);
-	for (i = 0; i <= csbi.dwSize.X-9; i++)
+	for (i = 6; i <= csbi.dwSize.X-9; i++)
 	{
-		Sleep(21);
+		Sleep(20);
 		coordScreen.Y = i;
 		for (j = 0; j <= i; j++)
 		{
@@ -374,19 +374,22 @@ void welcomeUI()
 	gotoxy(30, 18); printf("⑥  파일 저장");
 	gotoxy(30, 20); printf("⑦  종 료");
 	Sleep(TIME_OF_DELAY);
-
+	
+	PlaySound(TEXT("water.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 	gotoxy(25, 1); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(25, 1); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(25, 1); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(25, 1); textColor(15); printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(25, 1); textColor(12); printf("■"); Sleep(TIME_OF_DELAY);
 
+	PlaySound(TEXT("water.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 	gotoxy(27, 1); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(27, 1); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(27, 1); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(27, 1); textColor(15); printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(27, 1); textColor(10); printf("■"); Sleep(TIME_OF_DELAY);
 
+	PlaySound(TEXT("water.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 	gotoxy(25, 2); textColor(0);  printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(25, 2); textColor(8);  printf("■"); Sleep(TIME_OF_DELAY);
 	gotoxy(25, 2); textColor(7);  printf("■"); Sleep(TIME_OF_DELAY);
