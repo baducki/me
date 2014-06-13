@@ -54,43 +54,50 @@ int deleteInfo(Member_t *id, int i)
 {
 	int choice;
 	while (i != -1){
+		cursorOff();
 		textColor(16 * 14);
-		gotoxy(0, 26); printf("        위 회원정보를 삭제하시겠습니까? (Y/N) 【 】     메인 페이지 [↑]   ");
+		gotoxy(0, 26); printf("   위 회원을 삭제하시겠습니까?   삭제[→]    취소[←]    메인 페이지 [↑]  ");
 		textColor(7);
-		gotoxy(48, 26); textColor(16 * 14); printf(" "); textColor(7);
-		gotoxy(48, 26); choice = getche();
+		gotoxy(0, 27); textColor(0); choice = getche(); textColor(7);
 		if (choice == 224){
 			choice = getch();
 			if (choice == 72){
 				homePageButton(1);
 				return -1;
 			}
-		}
-		else if (choice == 89 || choice == 121) {
-			cursorOff();
-			deleteSearchInfoUI(id, i);
-			deleteLinkedList(id, i);
-			textColor(16 * 10);
-			gotoxy(0, 26); printf("           < 회원 정보가 삭제되었습니다 >   아무 키나 누르세요             ");
-			textColor(7);
-			deleteCompleteUI();
-			getch();
-			screenClearDelete();
-			cursorOn();
-			return -1;
-		}
-		else if (choice == 78 || choice == 110){
-			cursorOff();
-			textColor(16 * 10);
-			gotoxy(0, 26); printf("        < 회원 정보 삭제가 취소되었습니다 >    아무 키나 누르세요          ");
-			textColor(7);
-			getch();
-			cursorOn();
-			return -1;
+			else if (choice == 77){
+				deleteSearchInfoUI(id, i);
+				deleteLinkedList(id, i);
+				cursorOff();
+				gotoxy(31, 26); textColor(16 * 10 + 14); printf("  삭제[→]  "); textColor(7); Sleep(TIME_OF_DELAY);
+				textColor(16 * 10);
+				gotoxy(0, 26); printf("           < 회원 정보가 삭제되었습니다 >   아무 키나 누르세요             ");
+				textColor(7);
+				deleteCompleteUI();
+				getch();
+				screenClearDelete();
+				cursorOn();
+				return -1;
+			}
+			else if (choice == 75){
+				cursorOff();
+				gotoxy(43, 26); textColor(16 * 10 + 14); printf("  취소[←]  "); textColor(7); Sleep(TIME_OF_DELAY);
+				textColor(16 * 10);
+				gotoxy(0, 26); printf("        < 회원 정보 삭제가 취소되었습니다 >    아무 키나 누르세요          ");
+				textColor(7);
+				getch();
+				cursorOn();
+				return -1;
+			}
+			else{
+				textColor(12 * 16);
+				gotoxy(0, 28); printf("        Warning:  →(삭제), ←(취소), ↑(메인페이지)키를 입력하세요        ");
+				textColor(7);
+			}
 		}
 		else {
 			textColor(12 * 16);
-			gotoxy(0, 28); printf("                  Warning: Y(예) 혹은 N(아니요) 키를 입력하세요            ");
+			gotoxy(0, 28); printf("        Warning:  →(삭제), ←(취소), ↑(메인페이지)키를 입력하세요        ");
 			textColor(7);
 		}
 	}

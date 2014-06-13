@@ -7,8 +7,10 @@ int main(void)
 {
 	SetConsoleTitleA("  회원 관리 프로그램 made by YG & KYUNG");
 	system("mode con lines=30 cols=75");  // 윈도우 창 화면 크기를 고정
+	cursorOff();
 	PlaySound(TEXT("opening.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 	welcomeUI();
+	cursorOn();
 	FILE *fp = NULL;
 	Member_t id[NUM_OF_MEMBERS];
 
@@ -52,14 +54,16 @@ int main(void)
 
 		case '5': // 검색하기
 			choiceButton(menu_choice);
+			screenClearUp();
+			searchMemberInfo(id);
 			break;
 
 		case '6': // 저장하기
 			choiceButton(menu_choice);
 			menu_choice = saveCheck();
-			screenClearUp();
 			if (menu_choice == 1)
 			{
+				screenClearUp();
 				saveFile(fp, id);
 				saveneed = 0;
 			}
@@ -154,6 +158,48 @@ int errorCheck(int check)   // 메뉴선택 시 에러 체크
 	if (check < 49 || check > 55) return -1;
 	else if (check == 53) return -2;
 	return 0;
+}
+
+void choiceButton(int num)   // 메인 메뉴에서 기능 선택시 버튼 On
+{
+	switch (num)
+	{
+	case '1':
+		textColor(16 * 10 + 14);
+		gotoxy(30, 8); printf("①  회원 보기"); Sleep(77);
+		textColor(7);
+		break;
+	case '2':
+		textColor(16 * 10 + 14);
+		gotoxy(30, 10); printf("②  회원 등록"); Sleep(77);
+		textColor(7);
+		break;
+	case '3':
+		textColor(16 * 10 + 14);
+		gotoxy(30, 12); printf("③  회원 삭제"); Sleep(77);
+		textColor(7);
+		break;
+	case '4':
+		textColor(16 * 10 + 14);
+		gotoxy(30, 14); printf("④  회원 수정"); Sleep(77);
+		textColor(7);
+		break;
+	case '5':
+		textColor(16 * 10 + 14);
+		gotoxy(30, 16); printf("⑤  회원 검색"); Sleep(77);
+		textColor(7);
+		break;
+	case '6':
+		textColor(16 * 10 + 14);
+		gotoxy(30, 18); printf("⑥  파일 저장"); Sleep(77);
+		textColor(7);
+		break;
+	case '7':
+		textColor(16 * 10 + 14);
+		gotoxy(30, 20); printf("⑦  종 료    "); Sleep(77);
+		textColor(7);
+		break;
+	}
 }
 
 void mainmenuUI(void)       // 메인메뉴 UI 출력

@@ -288,25 +288,28 @@ void closeCase2(void)
 }
 int inputMemberSave(void)   // 입력한 회원의 정보 저장 유무 확인
 {
-	int key = -1, check = -1;
+	int choice = -1, check = -1;
+	cursorOff();
 	textColor(16 * 14);
-	gotoxy(0, 26); printf("                < 회원 등록 완료 > 저장하시겠습니까? (Y/N) 【 】           ");
+	gotoxy(0, 26); printf("      < 회원등록 완료 > 저장하시겠습니까?    예 [→]     아니요 [←]       ");
 	textColor(7);
 	while (check != 1 || check != 0){
-		gotoxy(61, 26); key = getche();
-		if (key == 89 || key == 121){
-			check = 1; break;
+		gotoxy(0, 27); textColor(0);  choice = getche(); textColor(7);
+		if (choice == 224){
+			choice = getch();
+			if (choice == 77){
+				gotoxy(43, 26); textColor(16 * 14 + 10); printf("  예 [→]  "); textColor(7); Sleep(TIME_OF_DELAY);
+				cursorOn();
+				return -1;
+			}
+			else if (choice == 75){
+				gotoxy(55, 26); textColor(16 * 14 + 10); printf("  아니요 [←]  "); textColor(7); Sleep(TIME_OF_DELAY);
+				cursorOn();
+				return 0;
+			}
+			else warningYesOrNo();
 		}
-		else if (key == 78 || key == 110){
-			check = 0; break;
-		}
-		else{
-			textColor(12 * 16);
-			gotoxy(0, 28); printf("                  Warning: Y(예) 혹은 N(아니요) 키를 입력하세요            ");
-			textColor(16 * 14);
-			gotoxy(0, 26); printf("                < 회원 등록 완료 > 저장하시겠습니까? (Y/N) 【 】           ");
-			textColor(7);
-		}
+		else warningYesOrNo();
 	}
 	gotoxy(0, 28); lineClear();
 	return check;

@@ -396,16 +396,30 @@ void validStudentIDError(int menu)
 
 int inputInfoYesOrNo(int i) // 입력정보 선택 여부 확인 (입력값 i: 검색 or 수정 선택 변수)
 {
-	int key;  // key: Yes or No 선택 변수
+	int choice;  // key: Yes or No 선택 변수
 	char input[2][5] = { "검색", "수정" };
 	while (1){
+		cursorOff();
 		textColor(16 * 10);
-		gotoxy(0, 26); printf("                  위 정보로 %s하시겠습니까? (Y/N) 【 】                  ", input[i]);
+		gotoxy(0, 26); printf("            위 정보로 %s하시겠습니까?      예 [→]     아니요 [←]       ", input[i]);
+		textColor(0);
+		gotoxy(0, 27);
+		choice = getche();
 		textColor(7);
-		gotoxy(54, 26);
-		key = getche();
-		if (key == 89 || key == 121) return 0;
-		else if (key == 78 || key == 110) return -1;
+		if (choice == 224){
+			choice = getch();
+			if (choice == 77){
+				gotoxy(43, 26); textColor(16 * 14 + 10); printf("  예 [→]  "); textColor(7); Sleep(TIME_OF_DELAY);
+				cursorOn();
+				return 0;
+			}
+			else if (choice == 75){
+				gotoxy(55, 26); textColor(16 * 14 + 10); printf("  아니요 [←]  "); textColor(7); Sleep(TIME_OF_DELAY);
+				cursorOn();
+				return -1;
+			}
+			else warningYesOrNo();
+		}
 		else warningYesOrNo();
 	}
 	return 0;

@@ -104,7 +104,7 @@ int pauseWithLeft(void)  // 화면을 멈추고 다음화면에 계속 출력
 			}
 		}
 		textColor(12 * 16);
-		gotoxy(0, 28); printf("                   Warning: ← 혹은 ↑키를 입력하세요                      ");
+		gotoxy(0, 28); printf("                   Warning: ← 혹은 ↑방향키를 입력하세요                      ");
 		textColor(7);
 	}
 	return choice;
@@ -130,7 +130,7 @@ int pauseWithRight(void)  // 화면을 멈추고 다음화면에 계속 출력
 			}
 		}
 		textColor(12 * 16);
-		gotoxy(0, 28); printf("                 Warning: ↑ 혹은 → 방향키를 입력하세요                   ");
+		gotoxy(0, 28); printf("                    Warning: ↑ 혹은 → 방향키를 입력하세요                ");
 		textColor(7);
 	}
 	return choice;
@@ -154,48 +154,6 @@ int pauseWithLeftRight(void)    // 화면을 멈추고 다음화면에 계속, 이전화면으로 �
 		textColor(7);
 	}
 	return choice;
-}
-
-void choiceButton(int num)   // 메인 메뉴에서 기능 선택시 버튼 On
-{
-	switch (num)
-	{
-	case '1':
-		textColor(16 * 10);
-		gotoxy(30, 8); printf("①  회원 보기"); Sleep(77);
-		textColor(7);
-		break;
-	case '2':
-		textColor(16 * 10);
-		gotoxy(30, 10); printf("②  회원 등록"); Sleep(77);
-		textColor(7);
-		break;
-	case '3':
-		textColor(16 * 10);
-		gotoxy(30, 12); printf("③  회원 삭제"); Sleep(77);
-		textColor(7);
-		break;
-	case '4':
-		textColor(16 * 10);
-		gotoxy(30, 14); printf("④  회원 수정"); Sleep(77);
-		textColor(7);
-		break;
-	case '5':
-		textColor(16 * 10);
-		gotoxy(30, 16); printf("⑤  회원 검색"); Sleep(77);
-		textColor(7);
-		break;
-	case '6':
-		textColor(16 * 10);
-		gotoxy(30, 18); printf("⑥  파일 저장"); Sleep(77);
-		textColor(7);
-		break;
-	case '7':
-		textColor(16 * 10);
-		gotoxy(30, 20); printf("⑦  종 료    "); Sleep(77);
-		textColor(7);
-		break;
-	}
 }
 
 void previousPageButton(void)   // 이전 페이지 버튼 On

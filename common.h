@@ -112,13 +112,18 @@ void adjustInfoInputAddress(Member_t *id, int i);               // 수정된 주소 �
 void adjustInfoInputCellphone(Member_t *id, int i);             // 수정된 전화번호 정보를 저장
 void case4SearchOptionUI(void);                                 // 회원수정 중 검색 옵션 UI
 
+// 5. 검색 함수
+void searchMemberInfo(Member_t *id);          // 5. 회원정보 검색 실행
+void case5SearchOptionUI(void);               // 회원정보 검색 옵션 선택 화면
+int searchInfo(Member_t *id, int i);          // 회원정보 검색 
+
 // 6. 저장 함수 
 void saveFile(FILE *fp, Member_t *id);  // 메모리에 저장되어 있는 내용을 파일로 저장
 void fileSaveUI(void);                              // 파일저장 UI
 
 // 7. 종료 함수
 int saveCheck(void);                     // 종료 전 파일 저장 유무를 질문 (반환값: 입력여부)
-int checkSaveValue(int key);             // 파일 저장 유무 시 유저가 입력한 값을 검증
+int checkSaveValue(void);             // 파일 저장 유무 시 유저가 입력한 값을 검증
 void programCloseUI(void);               // 프로그램 종료 UI
 
 // 기능함수 (consoleFuntion.c)
@@ -132,4 +137,4 @@ void lineClear(void);                    // 한 줄 메세지 제거
 void printfAllNodes(Member_t *head);     // Linked List를 이용해서 회원정보 출력
 void screenClearUp();                    // 화면 위로 이동
 void screenClearDelete();                // 화면 지우개로 지움
-int stringComp(char *msg1[], char *msg2);
+int stringComp(char *msg1, char *msg2);

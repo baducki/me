@@ -3,35 +3,53 @@
 // 7. 종료 함수
 int saveCheck(void)   // 종료 전 파일 저장 유무를 질문 (반환값: 입력여부)
 {
-	int inputkey, errorcheck = 0;
+	int errorcheck = 0;
 	while (1){
 		if (errorcheck != -1){
+			cursorOff();
 			textColor(16 * 10);
-			gotoxy(0, 24); printf("                  수정한 내용을 저장하시겠습니까? (Y/N)【 】               ");
+			gotoxy(0, 24); printf("        수정한 내용을 저장하시겠습니까?      예 [→]     아니요 [←]       ");
 			textColor(7);
-			gotoxy(57, 24); inputkey = getche();
-			errorcheck = checkSaveValue(inputkey);
+			errorcheck = checkSaveValue();
+			cursorOn();
 			if (errorcheck != -1) break;
 		}
 		else if (errorcheck == -1){
+			cursorOff();
 			textColor(16 * 10);
-			gotoxy(0, 24); printf("                  수정한 내용을 저장하시겠습니까? (Y/N)【 】               ");
-			textColor(12 * 16);
-			gotoxy(0, 28); printf("                  Warning: Y(예) 혹은 N(아니요) 키를 입력하세요            ");
+			gotoxy(0, 24); printf("        수정한 내용을 저장하시겠습니까?      예 [→]     아니요 [←]        ");
+			warningYesOrNo();
 			textColor(7);
-			gotoxy(57, 24); inputkey = getche();
-			errorcheck = checkSaveValue(inputkey);
+			errorcheck = checkSaveValue();
+			cursorOn();
 			if (errorcheck != -1) break;
 		}
 	}
 
 	return errorcheck;
 }
-int checkSaveValue(int key)   // 파일 저장 유무 시 유저가 입력한 값을 검증
+int checkSaveValue(void)   // 파일 저장 유무 시 유저가 입력한 값을 검증
 {
-	if (key == 89 || key == 121) return 1;
-	else if (key == 78 || key == 110) return 2;
-	else						 return -1;
+	int choice;
+	while (1){
+		gotoxy(0, 27); textColor(0); choice = getche(); textColor(7);
+		if (choice == 224){
+			gotoxy(0, 27); textColor(0); choice = getch(); textColor(7);
+			if (choice == 77){
+				gotoxy(43, 24); textColor(16 * 14 + 10); printf("  예 [→]  "); textColor(7); Sleep(TIME_OF_DELAY);
+				cursorOn();
+				return 1;
+			}
+			else if (choice == 75){
+				gotoxy(55, 24); textColor(16 * 14 + 10); printf("  아니요 [←]  "); textColor(7); Sleep(TIME_OF_DELAY);
+				cursorOn();
+				return 2;
+			}
+			else warningYesOrNo();
+		}
+		else warningYesOrNo();
+	}
+	return 0;
 }
 
 void programCloseUI(void)   // 프로그램 종료 UI

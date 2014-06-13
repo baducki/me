@@ -34,7 +34,7 @@ void textColor(int color)  // 글자색 변경
 void warningYesOrNo(void)  // Yes 혹은 No를 누르세요 Error 메세지 
 {
 	textColor(12 * 16);
-	gotoxy(0, 28); printf("                  Warning: Y(예) 혹은 N(아니요) 키를 입력하세요            ");
+	gotoxy(0, 28); printf("                 Warning: →(예) 혹은 ←(아니오) 키를 입력하세요           ");
 	textColor(16 * 14);
 }
 
@@ -152,9 +152,9 @@ void screenClearDelete()
 	dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
 	cursorOff();
 	int i, j;
-	for (i = 7; i <= csbi.dwSize.X; i += 21)
+	for (i = 7; i <= csbi.dwSize.X; i += 7)
 	{
-		coordScreen.Y = i; Sleep(14);
+		coordScreen.Y = i; Sleep(TIME_OF_DELAY);
 		for (j = 0; j <= i; j++)
 		{
 			coordScreen.X = j;
@@ -163,21 +163,9 @@ void screenClearDelete()
 			printf(" ");
 		}
 	}
-	for (i = 2; i <= csbi.dwSize.X; i += 27)
+	for (i = 5; i <= csbi.dwSize.X; i += 5)
 	{
-		coordScreen.Y = i; Sleep(14);
-		for (j = 0; j <= i; j++)
-		{
-			coordScreen.X = j;
-			coordScreen.Y--;
-			SetConsoleCursorPosition(hConsole, coordScreen);
-			printf(" ");
-		}
-	}
-
-	for (i = 3; i <= csbi.dwSize.X; i += 20)
-	{
-		coordScreen.Y = i; Sleep(14);
+		coordScreen.Y = i; Sleep(TIME_OF_DELAY);
 		for (j = 0; j <= i; j++)
 		{
 			coordScreen.X = j;
@@ -187,9 +175,9 @@ void screenClearDelete()
 		}
 	}
 
-	for (i = 1; i <= csbi.dwSize.X; i += 11)
+	for (i = 3; i <= csbi.dwSize.X; i += 9)
 	{
-		coordScreen.Y = i; Sleep(14);
+		coordScreen.Y = i; Sleep(TIME_OF_DELAY);
 		for (j = 0; j <= i; j++)
 		{
 			coordScreen.X = j;
@@ -228,9 +216,9 @@ void welcomeUI()
 	cursorOff();
 
 	textColor(15);
-	for (i = 6; i <= csbi.dwSize.X-9; i++)
+	for (i = 7; i <= csbi.dwSize.X-9; i++)
 	{
-		Sleep(20);
+		Sleep(21);
 		coordScreen.Y = i;
 		for (j = 0; j <= i; j++)
 		{
@@ -322,23 +310,23 @@ void welcomeUI()
 	}
 
 	SetConsoleCursorPosition(hConsole, coordScreen);
-	Sleep(1400);
-	textColor(15); Sleep(TIME_OF_DELAY);
+	Sleep(700);
+	textColor(15); Sleep(TIME_OF_DELAY*3);
 	gotoxy(24, 12);   printf("┌────────────┐");
 	gotoxy(24, 13); printf("│ NHN INSTITUTE FOR THE  │");
 	gotoxy(24, 14); printf("│ NEXT NETWORK           │");
 	gotoxy(24, 15); printf("└────────────┘");
-	textColor(7); Sleep(TIME_OF_DELAY);
+	textColor(7); Sleep(TIME_OF_DELAY*3);
 	gotoxy(24, 12);   printf("┌────────────┐");
 	gotoxy(24, 13); printf("│ NHN INSTITUTE FOR THE  │");
 	gotoxy(24, 14); printf("│ NEXT NETWORK           │");
 	gotoxy(24, 15); printf("└────────────┘");
-	textColor(8); Sleep(TIME_OF_DELAY);
+	textColor(8); Sleep(TIME_OF_DELAY*3);
 	gotoxy(24, 12);   printf("┌────────────┐");
 	gotoxy(24, 13); printf("│ NHN INSTITUTE FOR THE  │");
 	gotoxy(24, 14); printf("│ NEXT NETWORK           │");
 	gotoxy(24, 15); printf("└────────────┘");
-	textColor(0); Sleep(TIME_OF_DELAY);
+	textColor(0); Sleep(TIME_OF_DELAY*3);
 	gotoxy(24, 12);   printf("┌────────────┐");
 	gotoxy(24, 13); printf("│ NHN INSTITUTE FOR THE  │");
 	gotoxy(24, 14); printf("│ NEXT NETWORK           │");
@@ -402,6 +390,7 @@ void welcomeUI()
 	gotoxy(29, 2); textColor(7); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
 	gotoxy(29, 2); textColor(15); printf("회원 관리 프로그램"); Sleep(TIME_OF_DELAY);
 	textColor(8);
+	
 	for (i = 0; i <= 32; i++){
 		gotoxy(i, 4);  printf("made by YG & Kyung"); Sleep(17);
 		if (i != 32){
@@ -412,12 +401,11 @@ void welcomeUI()
 	textColor(16 * 14);
 	gotoxy(0, 26); printf("\t\t     원하는 기능의 번호를 입력하세요【 】                  ");
 	textColor(7);
-
 }
 
 int stringComp(char *msg1, char *msg2)
 {
-	unsigned int i = 0, j = 0, check = 0;
+	int i = 0, j = 0, check = 0;
 
 	while(1) {
 		if (msg1[j] == msg2[i] && msg1[j + 1] == msg2[i + 1]){
