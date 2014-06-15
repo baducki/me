@@ -104,7 +104,7 @@ int pauseWithLeft(void)  // 화면을 멈추고 다음화면에 계속 출력
 			}
 		}
 		textColor(12 * 16);
-		gotoxy(0, 28); printf("                   Warning: ← 혹은 ↑방향키를 입력하세요                      ");
+		gotoxy(0, 28); printf("                   Warning: ← 혹은 ↑방향키를 입력하세요                  ");
 		textColor(7);
 	}
 	return choice;

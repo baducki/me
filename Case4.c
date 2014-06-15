@@ -327,7 +327,7 @@ int printSameNameMember(Member_t *id, int *sameName, int j)
 int insertAddress(int line, int row, char *address, int menu)
 {
 	int valid;
-	char temp[1000];
+	char temp[500];
 	gotoxy(line, row);
 	gets(temp);
 

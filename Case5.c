@@ -102,5 +102,4 @@ void searchInfo(Member_t *id, int i)
 		textColor(7); getch();
 		cursorOn();
 	}
-	return -1;
 }
