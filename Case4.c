@@ -249,10 +249,9 @@ int searchInfoName(Member_t *id, char *name)
 	}
 	else if (j > 1){
 		j = printSameNameMember(id, sameName, j);
-		j--;
 		curtainEffect();
-		case4PrintInfo(id, sameName[j]);
-		return sameName[j];
+		case4PrintInfo(id, sameName[j-1]);
+		return sameName[j-1];
 	}
 	return -1;
 }

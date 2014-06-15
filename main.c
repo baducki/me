@@ -1,5 +1,5 @@
 // 프로그래밍 연습 기말과제 3주차 - 1분반 윤영기(141057), 송경(141044)
-// *** 현재는 1. 회원보기 2. 회원등록 3. 회원수정 4. 회원삭제 6. 저장하기 7. 종료하기를 구현하였습니다 ***
+// *** 모든 기능 구현하였습니다 ***
 
 #include "common.h"
 
@@ -8,8 +8,7 @@ int main(void)
 	SetConsoleTitleA("  회원 관리 프로그램 made by YG & KYUNG");
 	system("mode con lines=30 cols=75");  // 윈도우 창 화면 크기를 고정
 	cursorOff();
-	PlaySound(TEXT("opening.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
-	welcomeUI();
+	// welcomeUI();
 	cursorOn();
 	FILE *fp = NULL;
 	Member_t id[NUM_OF_MEMBERS];
@@ -133,15 +132,6 @@ int mainMenu(int *error)  // 메인메뉴 기능 (입력값: 에러값, 출력값: 유저 메뉴선�
 		*error = errorCheck(choice);
 	}
 
-	else if (*error == -2){
-		mainmenuUI();               // 메인 페이지 출력
-		textColor(12 * 16);
-		gotoxy(0, 28); printf("                  Warning: 5번 MENU는 아직 작업 중입니다                   ");
-		textColor(7);
-		choice = inputMenu();     //  메뉴 입력 받기
-		gotoxy(0, 28); lineClear();
-		*error = errorCheck(choice);
-	}
 	return choice;
 }
 
@@ -156,7 +146,6 @@ int inputMenu(void)         // 메뉴 선택값 입력
 int errorCheck(int check)   // 메뉴선택 시 에러 체크
 {
 	if (check < 49 || check > 55) return -1;
-	else if (check == 53) return -2;
 	return 0;
 }
 

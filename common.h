@@ -115,7 +115,7 @@ void case4SearchOptionUI(void);                                 // 회원수정 중 �
 // 5. 검색 함수
 void searchMemberInfo(Member_t *id);          // 5. 회원정보 검색 실행
 void case5SearchOptionUI(void);               // 회원정보 검색 옵션 선택 화면
-int searchInfo(Member_t *id, int i);          // 회원정보 검색 
+void searchInfo(Member_t *id, int i);          // 회원정보 검색 
 
 // 6. 저장 함수 
 void saveFile(FILE *fp, Member_t *id);  // 메모리에 저장되어 있는 내용을 파일로 저장

@@ -216,6 +216,7 @@ void welcomeUI()
 	cursorOff();
 
 	textColor(15);
+	PlaySound(TEXT("opening.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_NODEFAULT);
 	for (i = 7; i <= csbi.dwSize.X-9; i++)
 	{
 		Sleep(21);

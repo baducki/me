@@ -3,7 +3,7 @@
 void searchMemberInfo(Member_t *id)
 {
 	int choice = 0;	                    // 검색옵션 선택 변수
-	int studentid, i;                   // 검색에서 입력한 studentid를 받는 변수, 검색에서 받는 배열의 순서 변수 i
+	int studentid;                   // 검색에서 입력한 studentid를 받는 변수, 검색에서 받는 배열의 순서 변수 i
 	char name[NAME_MAXCHAR];            // 검색에서 입력한 name을 받는 변수
 	char cellphone[CELLPHONE_MAXCHAR];  // 검색에서 입력한 cellphone을 받는 변수
 	while (choice != -1){
@@ -18,16 +18,18 @@ void searchMemberInfo(Member_t *id)
 				textColor(16 * 10);	gotoxy(7, 5);  printf("1. 학번    "); textColor(7);
 				studentid = searchStudentID();
 				if (studentid != -1){
-					i = searchInfoIDnum(id, studentid);
-				choice = searchInfo(id, i);
+					choice = searchInfoIDnum(id, studentid);
+					searchInfo(id, choice);
+					choice = -1;
 				}
 				break;
 			case '2':
 				textColor(16 * 10);	gotoxy(7, 6);  printf("2. 이름    "); textColor(7);
 				studentid = searchName(name);
 				if (studentid != -1){
-					i = searchInfoName(id, name);
-				choice = searchInfo(id, i);
+					choice = searchInfoName(id, name);
+					searchInfo(id, choice);
+					choice = -1;
 				}
 				break;
 			case '3':
@@ -35,8 +37,9 @@ void searchMemberInfo(Member_t *id)
 				studentid = searchCellphone(cellphone);
 				if (studentid == -2) studentid = -1;
 				if (studentid != -1){
-					i = searchInfoCellphone(id, cellphone);
-				choice = searchInfo(id, i);
+					choice = searchInfoCellphone(id, cellphone);
+					searchInfo(id, choice);
+					choice = -1;
 				}
 				break;
 			case '4':
@@ -72,30 +75,32 @@ void case5SearchOptionUI(void)  // 회원정보 수정 중 검색 옵션 UI
 	gotoxy(4, 12); printf("검색 옵션 선택【 】");
 }
 
-int searchInfo(Member_t *id, int i)
+void searchInfo(Member_t *id, int i)
 {
-	cursorOff();
-	textColor(16 * 14);
-	gotoxy(0, 0); printf("                             < 회원 정보 검색 >                            ");
-	textColor(7);
-	gotoxy(8, 3);  printf("┌────────── < 회원정보 > ───────────┐");
-	gotoxy(8, 4);  printf("│                                                        │");
-	gotoxy(8, 5);  printf("│                                                        │");
-	gotoxy(8, 6);  printf("│                                                        │");
-	gotoxy(8, 7);  printf("│                                                        │");
-	gotoxy(8, 8);  printf("│                                                        │");
-	gotoxy(8, 9);  printf("│                                                        │");
-	gotoxy(8, 10); printf("│                                                        │");
-	gotoxy(8, 11); printf("│                                                        │");
-	gotoxy(8, 12); printf("│                                                        │");
-	gotoxy(8, 13); printf("└────────────────────────────┘");
-	gotoxy(12, 5);  printf("①     학번 : %d", id[i].Studentnum);
-	gotoxy(12, 7);  printf("②     이름 : %s", id[i].Name);
-	gotoxy(12, 9);  printf("③     주소 : %s", id[i].Address);
-	gotoxy(12, 11); printf("④ 전화번호 : %s", id[i].Cellphone);
-	textColor(16 * 10);
-	gotoxy(0, 26); printf("                 < 회원 검색이 완료 되었습니다 >   아무키나 누르세요       ");
-	textColor(7); getch();
-	cursorOn();
+	if (i != -1){
+		cursorOff();
+		textColor(16 * 14);
+		gotoxy(0, 0); printf("                             < 회원 정보 검색 >                            ");
+		textColor(7);
+		gotoxy(8, 3);  printf("┌────────── < 회원정보 > ───────────┐");
+		gotoxy(8, 4);  printf("│                                                        │");
+		gotoxy(8, 5);  printf("│                                                        │");
+		gotoxy(8, 6);  printf("│                                                        │");
+		gotoxy(8, 7);  printf("│                                                        │");
+		gotoxy(8, 8);  printf("│                                                        │");
+		gotoxy(8, 9);  printf("│                                                        │");
+		gotoxy(8, 10); printf("│                                                        │");
+		gotoxy(8, 11); printf("│                                                        │");
+		gotoxy(8, 12); printf("│                                                        │");
+		gotoxy(8, 13); printf("└────────────────────────────┘");
+		gotoxy(12, 5);  printf("①     학번 : %d", id[i].Studentnum);
+		gotoxy(12, 7);  printf("②     이름 : %s", id[i].Name);
+		gotoxy(12, 9);  printf("③     주소 : %s", id[i].Address);
+		gotoxy(12, 11); printf("④ 전화번호 : %s", id[i].Cellphone);
+		textColor(16 * 10);
+		gotoxy(0, 26); printf("                 < 회원 검색이 완료 되었습니다 >   아무키나 누르세요       ");
+		textColor(7); getch();
+		cursorOn();
+	}
 	return -1;
 }
